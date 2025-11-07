@@ -1,0 +1,16 @@
+{
+  "name": "tomtroc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "watch": "sass --watch scss:css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "sass": "^1.93.3"
+  }
+}
