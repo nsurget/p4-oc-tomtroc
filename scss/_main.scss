@@ -2,6 +2,71 @@
 
 body {
     background-color: $background-light;
+    font-family: $body-font-family;
 }
 
-    
+.container {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.small-container {
+    width: 100%;
+    max-width: 840px;
+    margin: 0 auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $title-font-family;
+    color: $gris-fonc;
+}
+
+// Header
+header {
+    background-color: $gris-clair;
+
+    .header-container {
+        display: flex;
+        gap: 78px;
+
+        .logo {
+            margin: 15px 0;
+            img {
+                height: 50px;
+                width: auto;
+            }
+        }
+
+        nav {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .left-side, .right-side {
+                display: flex;
+                gap: 42px;
+
+                a {
+                    text-decoration: none;
+                    color: $text;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: normal;
+                    letter-spacing: 0.28px;
+
+                    &.active {
+                        color: $gris-fonc;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
+}

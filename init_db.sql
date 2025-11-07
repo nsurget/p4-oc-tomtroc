@@ -47,12 +47,57 @@ CREATE TABLE IF NOT EXISTS `books` (
     CONSTRAINT `fk_book_author`
         FOREIGN KEY (`author_id`) 
         REFERENCES `authors`(`id`)
-        ON DELETE RESTRICT -- // Prevents deleting an author if they still have books
-        ON UPDATE CASCADE,
+        ON DELETE RESTRICT, -- // Prevents deleting an author if they still have books
+       
     
     CONSTRAINT `fk_book_user`
         FOREIGN KEY (`user_id`) 
         REFERENCES `users`(`id`)
         ON DELETE CASCADE -- // If a user deletes their account, their books are also deleted
-        ON UPDATE CASCADE
+        
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- // --------------------------------------------------------
+-- // Table `discussions`
+-- // --------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `discussions` (
+    `id` INT PRIMARY KEY AUTO_INCREMENT,
+    `user_1_id` INT NOT NULL,
+    `user_2_id` INT NOT NULL,
+    `last_message_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    -- // Foreign Key Constraints
+    CONSTRAINT `fk_discussion_user_1`
+        FOREIGN KEY (`user_1_id`) 
+        REFERENCES `users`(`id`),
+        
+    CONSTRAINT `fk_discussion_user_2`
+        FOREIGN KEY (`user_2_id`) 
+        REFERENCES `users`(`id`)
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- // --------------------------------------------------------
+-- // Table `messages`
+-- // --------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `messages` (
+    `id` INT PRIMARY KEY AUTO_INCREMENT,
+    `discussion_id` INT NOT NULL,
+    `user_id` INT NOT NULL,
+    `content` TEXT NOT NULL,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    -- // Foreign Key Constraints
+    CONSTRAINT `fk_message_discussion`
+        FOREIGN KEY (`discussion_id`) 
+        REFERENCES `discussions`(`id`)
+        ON DELETE CASCADE, -- // If a discussion is deleted, its messages are also deleted
+        
+    
+    CONSTRAINT `fk_message_user`
+        FOREIGN KEY (`user_id`) 
+        REFERENCES `users`(`id`)
+        
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

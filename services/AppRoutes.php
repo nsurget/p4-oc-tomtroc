@@ -10,11 +10,11 @@ final class AppRoutes
     public const HOME = 'home';
 
     // --- User Authentication ---
-    public const INSCRIPTION_FORM = 'inscriptionForm';
-    public const LOGIN_FORM     = 'connectionForm';
+    public const REGISTER_FORM = 'registerForm';
+    public const LOGIN_FORM     = 'loginForm';
 
-    public const LOGIN_PROCESS  = 'connectUser';
-    public const LOGOUT         = 'disconnectUser';
+    public const LOGIN_PROCESS  = 'loginProcess';
+    public const LOGOUT         = 'logout';
 
     // --- User ---
     public const USER_PROFILE = 'userProfile';

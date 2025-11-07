@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "watch": "sass --watch scss:css"
+    "watch": "sass --watch scss:css",
+    "prod": "sass --style compressed scss:css"
   },
   "keywords": [],
   "author": "",
