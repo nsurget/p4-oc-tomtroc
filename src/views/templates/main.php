@@ -29,12 +29,18 @@
             <?php endif; ?>
             <nav>
                 <div class="left-side">
-                    <a href="index.php?action=home" <?php echo Utils::request('action') === AppRoutes::HOME ? 'class="active"' : ''; ?>>Accueil</a>
-                    <a href="index.php?action=showBooks" <?php echo Utils::request('action') === AppRoutes::SHOW_BOOKS ? 'class="active"' : ''; ?>>Nos livres à l'échange </a>
+                    <a href="index.php?action=<?php echo AppRoutes::HOME; ?>" <?php echo Utils::request('action',AppRoutes::HOME) === AppRoutes::HOME ? 'class="active"' : ''; ?>>Accueil</a>
+                    <a href="index.php?action=<?php echo AppRoutes::SHOW_BOOKS; ?>" <?php echo Utils::request('action') === AppRoutes::SHOW_BOOKS ? 'class="active"' : ''; ?>>Nos livres à l'échange </a>
                 </div>
                 <div class="right-side">
-                    <a href="index.php?action=loginForm" <?php echo Utils::request('action') === AppRoutes::LOGIN_FORM ? 'class="active"' : ''; ?>>Se connecter</a>
-                    <a href="index.php?action=registerForm" <?php echo Utils::request('action') === AppRoutes::REGISTER_FORM ? 'class="active"' : ''; ?>>S'inscrire</a>
+                    <?php if (Utils::isUserConnected()): ?>
+                        <a href="index.php?action=<?php echo AppRoutes::SHOW_CHAT; ?>">Messagerie</a>
+                        <a href="index.php?action=<?php echo AppRoutes::USER_PROFILE; ?>">Mon compte</a>
+                        <a href="index.php?action=<?php echo AppRoutes::LOGOUT; ?>">Se deconnecter</a>
+                    <?php else: ?>
+                        <a href="index.php?action=<?php echo AppRoutes::LOGIN_FORM; ?>" <?php echo Utils::request('action') === AppRoutes::LOGIN_FORM ? 'class="active"' : ''; ?>>Se connecter</a>
+                        <a href="index.php?action=<?php echo AppRoutes::REGISTER_FORM; ?>" <?php echo Utils::request('action') === AppRoutes::REGISTER_FORM ? 'class="active"' : ''; ?>>S'inscrire</a>
+                    <?php endif; ?>
                 </div>
             </nav>
         </div>
@@ -45,7 +51,10 @@
     </main>
 
     <footer>
-
+        <a href="index.php?action=<?php echo AppRoutes::POLICY; ?>">Politique de confidentialité</a>
+        <a href="index.php?action=<?php echo AppRoutes::MENTIONS; ?>">Mentions légales</a>
+        <a href="index.php?action=<?php echo AppRoutes::HOME; ?>">Tom Troc©</a>
+        <img src="./uploads/footer-logo.svg" alt="Logo">
     </footer>
     <script src="./js/script.js"></script>
 </body>

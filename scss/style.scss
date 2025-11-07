@@ -1,5 +1,15 @@
 @use 'reset';
 @use 'fonts';
 @use 'variables';
+@use 'title';
+
+@use 'components/button';
+@use 'components/input';
 @use 'main';
+
+@use 'pages/register-login-form';
+@use 'pages/error';
+
+
+
 

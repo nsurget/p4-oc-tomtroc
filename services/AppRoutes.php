@@ -11,10 +11,11 @@ final class AppRoutes
 
     // --- User Authentication ---
     public const REGISTER_FORM = 'registerForm';
+    public const REGISTER_PROCESS = 'registerProcess';
     public const LOGIN_FORM     = 'loginForm';
-
     public const LOGIN_PROCESS  = 'loginProcess';
     public const LOGOUT         = 'logout';
+
 
     // --- User ---
     public const USER_PROFILE = 'userProfile';
@@ -38,4 +39,8 @@ final class AppRoutes
     public const SHOW_CHAT = 'showChat';
 
     public const ADD_MESSAGE = 'addMessage';
+
+    // --- Policy & Mentions ---
+    public const POLICY = 'policy';
+    public const MENTIONS = 'mentions';
 }

@@ -3,28 +3,34 @@
 body {
     background-color: $background-light;
     font-family: $body-font-family;
+
+    
+    ::selection {
+        color: $text;
+        background-color: rgba($primary, 0.2);
+    }
+    
+   
+
 }
 
 .container {
     width: 100%;
-    max-width: 1140px;
+    max-width: $container;
     margin: 0 auto;
 }
 
 .small-container {
     width: 100%;
-    max-width: 840px;
+    max-width: $small-container;
     margin: 0 auto;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: $title-font-family;
-    color: $gris-fonc;
+a {
+    color: $text;
+    &:hover {
+        color: $primary;
+    }
 }
 
 // Header
@@ -61,12 +67,47 @@ header {
                     line-height: normal;
                     letter-spacing: 0.28px;
 
+                    &:hover {
+                        color: $primary;
+                    }
+
                     &.active {
                         color: $gris-fonc;
                         font-weight: 600;
+                        cursor: default;
                     }
+
+
                 }
             }
         }
+    }
+}
+
+
+// Footer
+footer {
+    background-color: $white;
+    padding: 23px;
+    display: flex;
+    justify-content: end;
+    gap: 40px;
+
+    a {
+        text-decoration: none;
+        color: $text;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: 0.28px;
+
+        &:hover {
+            color: $primary;
+        }
+    }
+
+    img {
+        width: auto;
+        height: 18px;
     }
 }

@@ -61,10 +61,6 @@ class DBManager
             $query = $this->db->query($sql);
         } else {
             $query = $this->db->prepare($sql);
-
-            echo '<pre>';
-            var_dump($this->debugQuery($sql, $params));
-            echo '</pre>';
             $query->execute($params);
         }
         return $query;

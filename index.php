@@ -19,24 +19,34 @@ try {
 
         case AppRoutes::LOGIN_FORM:
             $userController = new UserController();
-            // $userController->displayConnectionForm();
+            $userController->displayConnectionForm();
+            break;
+
+        case AppRoutes::REGISTER_FORM:
+            $userController = new UserController();
+            $userController->displayRegistrationForm();
             break;
 
         case AppRoutes::LOGIN_PROCESS:
             $userController = new UserController();
-            // $userController->connectUser();
+            $userController->connectUser();
+            break;
+
+        case AppRoutes::REGISTER_PROCESS:
+            $userController = new UserController();
+            $userController->registerUser();
             break;
 
         case AppRoutes::LOGOUT:
             $userController = new UserController();
-            // $userController->disconnectUser();
+            $userController->disconnectUser();
             break;
 
         case AppRoutes::SHOW_BOOKS:
             $bookController = new BookController();
             $bookController->showBooks();
             break;
-
+            
         default:
             throw new Exception("La page demandée n'existe pas.");
     }

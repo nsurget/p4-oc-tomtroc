@@ -89,4 +89,9 @@ class Utils {
         return $_REQUEST[$variableName] ?? $defaultValue;
     }
 
+    public static function isUserConnected() : bool
+    {
+        return isset($_SESSION['user']);
+    }
+
 }

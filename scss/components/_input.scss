@@ -1,0 +1,23 @@
+
+
+@use '../variables' as *;
+
+label {
+    color: $gris-text;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+input {
+    margin-bottom: 32px;
+    border-radius: 6px;
+    border: 1px solid $border;
+    background: $white;
+    max-width: 322px;
+    padding: 15px 10px;
+
+    &:focus {
+        outline-color: $primary;
+    }
+}
