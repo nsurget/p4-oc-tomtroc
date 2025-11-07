@@ -20,9 +20,15 @@
 <body>
     <header>
         <nav>
-           
+           <div class="left-side">
+            <a href="index.php?action=home">Accueil</a>
+            <a href="index.php?action=showBooks">Nos livres à l'échange</a>
+           </div>
+           <div class="right-side">
+            <a href="index.php?action=loginForm">Se connecter</a>
+            <a href="index.php?action=registerForm">S'inscrire</a>
+           </div>
         </nav>
-        <h1><?= $title ?? 'TomTroc' ?></h1>
     </header>
 
     <main>    

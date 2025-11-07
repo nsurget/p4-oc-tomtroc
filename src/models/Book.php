@@ -7,13 +7,13 @@
  
 class Book extends AbstractEntity 
 {
-    private int $id;
-    private string $title;
-    private string $description;
-    private string $availability;
-    private string $url_image;
-    private int $author_id;
-    private int $user_id;
+    protected int $id;
+    protected string $title;
+    protected string $description;
+    protected string $availability;
+    protected string $url_image;
+    protected int $author_id;
+    protected int $user_id;
     
     /**
      * Getter pour l'id.

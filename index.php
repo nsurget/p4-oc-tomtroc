@@ -12,24 +12,29 @@ try {
     // Pour chaque action, on appelle le bon contrôleur et la bonne méthode.
     switch ($action) {
         // Pages accessibles à tous.
-        case 'home':
+        case AppRoutes::HOME:
             $homeController = new HomeController();
             $homeController->showHome();
             break;
 
-        case 'connectionForm':
+        case AppRoutes::LOGIN_FORM:
             $userController = new UserController();
-            // $adminController->displayConnectionForm();
+            // $userController->displayConnectionForm();
             break;
 
-        case 'connectUser': 
+        case AppRoutes::LOGIN_PROCESS:
             $userController = new UserController();
-            // $adminController->connectUser();
+            // $userController->connectUser();
             break;
 
-        case 'disconnectUser':
+        case AppRoutes::LOGOUT:
             $userController = new UserController();
-            // $adminController->disconnectUser();
+            // $userController->disconnectUser();
+            break;
+
+        case AppRoutes::SHOW_BOOKS:
+            $bookController = new BookController();
+            $bookController->showBooks();
             break;
 
         default:
