@@ -93,6 +93,12 @@ footer {
     justify-content: end;
     gap: 40px;
 
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+
     a {
         text-decoration: none;
         color: $text;

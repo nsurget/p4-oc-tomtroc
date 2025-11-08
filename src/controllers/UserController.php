@@ -85,5 +85,21 @@ class UserController
         Utils::redirect(AppRoutes::HOME);
     }
 
+    public function showUserProfile()
+    {
+        if (!isset($_SESSION['user'])) {
+            throw new Exception("L'utilisateur n'est pas connecté.");
+        }
+
+        $user = $_SESSION['user'];
+
+        $bookManager = new BookManager();
+        
+        $books = $bookManager->getBooksByUser($user->getId());
+
+
+        $view = new View("Profil");
+        $view->render("userProfile", ['user' => $user, 'books' => $books]);
+    }
 
 }
