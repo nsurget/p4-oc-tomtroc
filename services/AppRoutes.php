@@ -20,6 +20,7 @@ final class AppRoutes
     // --- User ---
     public const USER_PROFILE = 'userProfile';
     public const USER_EDIT = 'userEdit';
+    public const USER_EDIT_PICTURE = 'userEditPicture';
     public const USER_PUBLIC_PROFILE = 'userPublicProfile';
 
     // --- Books ---

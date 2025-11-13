@@ -10,6 +10,18 @@ class User extends AbstractEntity
     private string $email;
     private ?string $profil_picture = null;
 
+     public function displayImage() : string
+    {
+        if ($this->getProfilPicture() === null) {
+            return '<img src="' . 'uploads/default.png' . '" alt="' . $this->getPseudo() . '">';
+        }
+
+        return '<img src="' . $this->getProfilPicture() . '" alt="' . $this->getPseudo() . '">';
+    }
+
+
+    // --- GETTER & SETTER
+
     /**
      * Setter pour le pseudo.
      * @param string $pseudo
@@ -77,7 +89,7 @@ class User extends AbstractEntity
      * Getter pour le profil_picture.
      * @return string
      */
-    public function getProfilPicture() : string 
+    public function getProfilPicture(): string|null
     {
         return $this->profil_picture;
     }

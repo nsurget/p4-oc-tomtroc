@@ -5,7 +5,7 @@ require_once 'config/config.php';
 
 // On récupère l'action demandée par l'utilisateur.
 // Si aucune action n'est demandée, on affiche la page d'accueil.
-$action = Utils::request('action');
+$action = Utils::request('action', AppRoutes::HOME);
 
 // Try catch global pour gérer les erreurs
 try {
@@ -51,6 +51,21 @@ try {
             $userController = new UserController();
             $userController->showUserProfile();
             break;
+
+        case AppRoutes::USER_EDIT:
+            $userController = new UserController();
+            $userController->editUser();
+            break;
+
+        case AppRoutes::USER_EDIT_PICTURE:
+            $userController = new UserController();
+            $userController->editUserPicture();
+            break;
+
+        case AppRoutes::SHOW_SINGLE_BOOK:
+            $userController = new BookController();
+            $userController->showBook();
+            break;    
             
         default:
             throw new Exception("La page demandée n'existe pas.");

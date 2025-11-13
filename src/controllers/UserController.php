@@ -94,12 +94,50 @@ class UserController
         $user = $_SESSION['user'];
 
         $bookManager = new BookManager();
-        
         $books = $bookManager->getBooksByUser($user->getId());
 
 
         $view = new View("Profil");
         $view->render("userProfile", ['user' => $user, 'books' => $books]);
+    }
+
+    public function editUser()
+    {
+        if (!isset($_SESSION['user'])) {
+            throw new Exception("L'utilisateur n'est pas connecté.");
+        }
+
+        $pseudo = Utils::request("pseudo");
+        $email = Utils::request("email");
+        $password = Utils::request("password");
+
+        $userManager = new UserManager();
+        $userManager->editUser($pseudo, $email, $password);
+
+        $user = $_SESSION['user'];
+        if (!empty($pseudo)) {
+            $user->setPseudo($pseudo);
+        }
+        if (!empty($email)) {
+            $user->setEmail($email);
+        }
+        if (!empty($password)) {
+            $user->setPassword($password);
+        }
+        $_SESSION['user'] = $user;      
+        Utils::redirect(AppRoutes::USER_PROFILE);
+    }
+
+    public function editUserPicture() {
+        if (!isset($_SESSION['user'])) {
+            throw new Exception("L'utilisateur n'est pas connecté.");
+        }
+
+        // TO-DO
+
+
+
+        Utils::redirect(AppRoutes::USER_PROFILE);
     }
 
 }

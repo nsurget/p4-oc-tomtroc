@@ -2,10 +2,9 @@
 @use 'fonts';
 @use 'variables';
 @use 'title';
-
 @use 'components/button';
 @use 'components/input';
-@use 'main';
+@use 'global';
 
 @use 'pages/register-login-form';
 @use 'pages/error';

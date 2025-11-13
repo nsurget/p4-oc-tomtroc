@@ -11,10 +11,38 @@ class Book extends AbstractEntity
     protected string $title;
     protected string $description;
     protected string $availability;
-    protected string $url_image;
+    protected ?string $url_image;
     protected int $author_id;
     protected int $user_id;
     
+
+    public function displayImage()
+    {
+        if ($this->getUrlImage() == null) {
+            return '<img src="./uploads/default.png" alt="' . $this->getTitle() . '">';
+        }
+
+        return '<img src="' . $this->getUrlImage() . '" alt="' . $this->getTitle() . '">';
+    }
+
+    public function getAuthorName()
+    {
+        $authorManager = new AuthorManager();
+        $author = $authorManager->getAuthorById($this->getAuthorId());
+        return $author->getFirstName() . ' ' . $author->getLastName();
+    }
+
+    public function getUserPseudo()
+    {
+        $userManager = new UserManager();
+        $user = $userManager->getUserById($this->getUserId());
+        return $user->getPseudo();
+    }
+
+
+    
+    // --- GETTER & SETTER
+
     /**
      * Getter pour l'id.
      * @return int
@@ -91,12 +119,12 @@ class Book extends AbstractEntity
         $this->availability = $availability;
     }
 
-    public function getUrlImage(): string 
+    public function getUrlImage(): string|null
     {
         return $this->url_image;
     }
 
-    public function setUrlImage(string $url_image): void 
+    public function setUrlImage(?string $url_image): void 
     {
         $this->url_image = $url_image;
     }

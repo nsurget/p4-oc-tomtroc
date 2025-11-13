@@ -1,23 +1,20 @@
 <?php
 
 /**
- * Cette classe sert à gérer les commentaires. 
+ * Cette classe sert à gérer les auteurs. 
  */
-class BookManager extends AbstractEntityManager
+class AuthorManager extends AbstractEntityManager
 {
-    public function getAllBooks(): array
+    public function getAuthorById(int $id): Author
     {
-        $sql = "SELECT * FROM books;";
+        $sql = "SELECT * FROM authors WHERE id = :id;";
 
-        $result = $this->db->query($sql);
+        $result = $this->db->query($sql, ['id' => $id]);
 
-        $books = [];
+        
 
-        while ($book = $result->fetch()) {
+        $author = $result->fetch();
 
-            $books[] = new Book($book);
-
-        }
-        return $books;
+        return new Author($author);
     }
 }

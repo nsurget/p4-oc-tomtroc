@@ -22,6 +22,17 @@ class UserManager extends AbstractEntityManager
         return null;
     }
 
+    public function getUserById(int $id) : ?User 
+    {
+        $sql = "SELECT * FROM users WHERE id = :id";
+        $result = $this->db->query($sql, ['id' => $id]);
+        $user = $result->fetch();
+        if ($user) {
+            return new User($user);
+        }
+        return null;
+    }
+
     public function registerUser(string $pseudo, string $email, string $password) : void
     {
 
@@ -31,5 +42,20 @@ class UserManager extends AbstractEntityManager
         $sql = "INSERT INTO users (pseudo, email, password) VALUES (:pseudo, :email, :password)";
         
         $this->db->query($sql, ['pseudo' => $pseudo, 'email' => $email, 'password' => $password]);
+    }
+
+    public function editUser(string $pseudo, string $email, string $password) : void
+    {
+
+        !empty($password) ? $password = password_hash($password, PASSWORD_DEFAULT) : $password = $_SESSION['user']->getPassword();
+        !empty($email) ? $email = strtolower($email) : $email = $_SESSION['user']->getEmail();
+        !empty($pseudo) ?: $pseudo = $_SESSION['user']->getPseudo();
+
+        try {
+            $sql = "UPDATE users SET pseudo = :pseudo , email = :email , password = :password WHERE id = :id";
+            $this->db->query($sql, ['pseudo' => $pseudo, 'email' => $email, 'password' => $password, 'id' => $_SESSION['idUser']]);
+        } catch (Exception $e) {
+            throw new Exception("Une erreur est survenue lors de la modification de l'utilisateur.");
+        }
     }
 }
