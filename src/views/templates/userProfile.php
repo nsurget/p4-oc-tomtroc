@@ -30,8 +30,11 @@
                 </div>
             </div>
             <div class="user-info">
-                <p><?= $user->getPseudo() ?></p>
-                <p><?= $user->getEmail() ?></p>
+                <p class="user-pseudo"><?= $user->getPseudo() ?></p>
+                <p class="user-member-since"><?= $user->getMemberSince() ?></p>
+                <p class="user-library">BIBLIOTHEQUE</p>
+                <p class="user-library-count"><img src="./uploads/book.svg" alt="icon de livres"> <?= count($books) ?> Livres</p>
+                <a href="?action=<?= AppRoutes::ADD_BOOK_FORM ?>">Ajouter un livre</a>
             </div>
         </div>
         <div class="user-form">
@@ -68,8 +71,8 @@
                         <td><?= $book->getDescription() ?></td>
                         <td><?= $book->getAvailability() ?></td>
                         <td>
-                            <a href="?action=<?= AppRoutes::EDIT_BOOK_FORM . '/' . $book->getId() ?>">Éditer</a>
-                            <a href="?action=<?= AppRoutes::DELETE_BOOK . '/' . $book->getId() ?>">Supprimer</a>
+                            <a href="?action=<?= AppRoutes::EDIT_BOOK_FORM . '&id=' . $book->getId() ?>">Éditer</a>
+                            <a href="?action=<?= AppRoutes::DELETE_BOOK . '&id=' . $book->getId() ?>">Supprimer</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

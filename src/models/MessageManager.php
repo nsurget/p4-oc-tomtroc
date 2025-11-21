@@ -5,53 +5,18 @@
  * Avec les champs id, pseudo, content, et idArticle.
  */
  
-class Discussion extends AbstractEntity 
+class MessageManager extends AbstractEntityManager
 {
-    protected int $id;
-    protected int $last_message_id;
-    
-
-
-    
-    // --- GETTER & SETTER
-
-    /**
-     * Getter pour l'id.
-     * @return int
-     */
-    public function getId(): int 
+    public function getMessagesByDiscussion(int $discussion_id): array
     {
-        return $this->id;
+        $sql = "SELECT * FROM messages WHERE discussion_id = :discussion_id";
+        $stmt = $this->db->query($sql, ['discussion_id' => $discussion_id]);
+        $messages = [];
+        while ($message = $stmt->fetch()) {
+            $messages[] = new Message($message);
+        }
+        return $messages;
     }
-
-    /**
-     * Setter pour l'id.
-     * @param int $id
-     * @return void
-     */
-    public function setId(int $id): void 
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * Getter pour le titre.
-     * @return string
-     */
-    public function getLastMessageId(): int 
-    {
-        return $this->last_message_id;
-    }
-
-    /**
-     * Setter pour le titre.
-     * @param int $last_message_id
-     * @return void
-     */
-    public function setLastMessageId(int $last_message_id): void 
-    {
-        $this->last_message_id = $last_message_id;
-    }
-      
+ 
 }   
     

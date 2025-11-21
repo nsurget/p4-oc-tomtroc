@@ -37,7 +37,7 @@ final class AppRoutes
     public const DELETE_BOOK = 'deleteBook';
 
     // --- Chat ---
-    public const SHOW_CHAT = 'showChat';
+    public const SHOW_DISCUSSION = 'showDiscussion';
 
     public const ADD_MESSAGE = 'addMessage';
 

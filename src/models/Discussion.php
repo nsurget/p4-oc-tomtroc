@@ -13,9 +13,6 @@ class Discussion extends AbstractEntity
     protected ?int $user_2_id;
     
 
-
-
-    
     // --- GETTER & SETTER
 
     /**
@@ -54,6 +51,26 @@ class Discussion extends AbstractEntity
     public function setLastMessageId(int $last_message_id): void 
     {
         $this->last_message_id = $last_message_id;
+    }
+
+    public function getUser1Id(): int 
+    {
+        return $this->user_1_id;
+    }
+
+    public function setUser1Id(int $user_1_id): void 
+    {
+        $this->user_1_id = $user_1_id;
+    }
+
+    public function getUser2Id(): int 
+    {
+        return $this->user_2_id;
+    }
+
+    public function setUser2Id(int $user_2_id): void 
+    {
+        $this->user_2_id = $user_2_id;
     }
       
 }   

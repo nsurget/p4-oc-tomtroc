@@ -94,4 +94,21 @@ class Utils {
         return isset($_SESSION['user']);
     }
 
+    public static function getTemplatePart(string $templatePartialName, array $params = []) : void
+    {
+        $view = new View($templatePartialName);
+        $view->renderPart($templatePartialName, $params);
+    }
+
+    public static function getBookStatus() : array
+    {
+        return [
+            'available' => 'Disponible',
+            'unavailable' => 'Indisponible',
+        ];
+    }
+    
+
+    
+
 }

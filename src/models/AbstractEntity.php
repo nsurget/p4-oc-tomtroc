@@ -18,6 +18,7 @@ abstract class AbstractEntity
         }
     }
 
+    
     /**
      * Système d'hydratation de l'entité.
      * Permet de transformer les données d'un tableau associatif.

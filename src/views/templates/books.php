@@ -1,22 +1,17 @@
 <section class="books-archive container">
-    <h1>Nos livres à l'échange</h1>
+    <?php if (isset($search)) : ?>
+        <h1>Résultats pour "<?= $search ?>"</h1>
+    <?php else : ?>
+        <h1>Nos livres à l'échange</h1>
+    <?php endif; ?>
 
     <form action="?action=<?= AppRoutes::SHOW_BOOKS; ?>" method="post">
-        <input type="text" placeholder="Rechercher un livre">
+        <input type="text" name="search" placeholder="Rechercher un livre">
         <button type="submit"></button>
     </form>
-
-
-    <?php foreach ($books as $book): ?>
-        <a href="?action=<?= AppRoutes::SHOW_SINGLE_BOOK; ?>&id=<?= $book->getId(); ?>">
-            <div class="book">
-                <div>
-                    <?= $book->displayImage() ?>
-                </div>
-                <p><?= $book->getTitle() ?></p>
-                <p><?= $book->getAuthorName() ?></p>
-                <p><?= $book->getUserPseudo() ?></p>
-            </div>
-        </a>
-    <?php endforeach; ?>
+    <div class="books-list">
+        <?php foreach ($books as $book): ?>
+            <?php Utils::getTemplatePart('book-card', ['book' => $book]); ?>
+        <?php endforeach; ?>
+    </div>
 </section>

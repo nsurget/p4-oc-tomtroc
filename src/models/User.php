@@ -9,7 +9,8 @@ class User extends AbstractEntity
     private string $password;
     private string $email;
     private ?string $profil_picture = null;
-
+    private DateTime $created_at;
+    
      public function displayImage() : string
     {
         if ($this->getProfilPicture() === null) {
@@ -19,8 +20,42 @@ class User extends AbstractEntity
         return '<img src="' . $this->getProfilPicture() . '" alt="' . $this->getPseudo() . '">';
     }
 
+    public function getMemberSince() : string
+    {
+        $date = $this->getCreatedAt();
+        $now = new DateTime();
+        $diff = $now->diff($date);
+
+        if ($diff->d > 30) {
+            if ($diff->m > 12) {
+                return 'Membre depuis ' . $diff->y . ' années';
+            }
+            return 'Membre depuis ' . $diff->m . ' mois';
+        }
+        return 'Membre depuis ' . $diff->d . ' jours';
+    }
+
+
 
     // --- GETTER & SETTER
+
+    /**
+     * Setter pour l'id.
+     * @param int $id
+     */
+    public function setCreatedAt(string $created_at) : void 
+    {
+        $this->created_at = new DateTime($created_at);
+    }
+
+    /**
+     * Getter pour l'id.
+     * @return int
+     */
+    public function getCreatedAt() : DateTime 
+    {
+        return $this->created_at;
+    }
 
     /**
      * Setter pour le pseudo.

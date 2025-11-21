@@ -37,6 +37,16 @@ class View
         require(MAIN_VIEW_PATH);
         echo ob_get_clean();
     }
+
+    public function renderPart(string $viewName, array $params = []) : void 
+    {
+        // On s'occupe de la vue envoyée
+        $viewPath = $this->buildPartPath($viewName);
+        
+        // Les deux variables ci-dessous sont utilisées dans le "main.php" qui est le template principal.
+        $content = $this->_renderViewFromTemplate($viewPath, $params);
+        echo $content;
+    }
     
     /**
      * Coeur de la classe, c'est ici qu'est généré ce que le controlleur a demandé. 
@@ -65,6 +75,11 @@ class View
     private function buildViewPath(string $viewName) : string
     {
         return TEMPLATE_VIEW_PATH . $viewName . '.php';
+    }
+
+    private function buildPartPath(string $viewName) : string
+    {
+        return TEMPLATE_PART_PATH . $viewName . '.php';
     }
 }
 

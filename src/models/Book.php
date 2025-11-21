@@ -4,8 +4,8 @@
  * Entité représentant un livre.
  * Avec les champs id, pseudo, content, et idArticle.
  */
- 
-class Book extends AbstractEntity 
+
+class Book extends AbstractEntity
 {
     protected int $id;
     protected string $title;
@@ -13,8 +13,12 @@ class Book extends AbstractEntity
     protected string $availability;
     protected ?string $url_image;
     protected int $author_id;
+
+    protected string $author_name;
     protected int $user_id;
-    
+
+    protected string $user_pseudo;
+
 
     public function displayImage()
     {
@@ -25,29 +29,39 @@ class Book extends AbstractEntity
         return '<img src="' . $this->getUrlImage() . '" alt="' . $this->getTitle() . '">';
     }
 
+
+    // GETTER & SETTER Complémentaires
+
     public function getAuthorName()
     {
-        $authorManager = new AuthorManager();
-        $author = $authorManager->getAuthorById($this->getAuthorId());
-        return $author->getFirstName() . ' ' . $author->getLastName();
+        return $this->author_name;
     }
+
+    public function setAuthorName(string $author_name): void
+    {
+        $this->author_name = $author_name;
+    }
+
 
     public function getUserPseudo()
     {
-        $userManager = new UserManager();
-        $user = $userManager->getUserById($this->getUserId());
-        return $user->getPseudo();
+        return $this->user_pseudo;
+    }
+
+    public function setUserPseudo(string $user_pseudo): void
+    {
+        $this->user_pseudo = $user_pseudo;
     }
 
 
-    
+
     // --- GETTER & SETTER
 
     /**
      * Getter pour l'id.
      * @return int
      */
-    public function getId(): int 
+    public function getId(): int
     {
         return $this->id;
     }
@@ -57,7 +71,7 @@ class Book extends AbstractEntity
      * @param int $id
      * @return void
      */
-    public function setId(int $id): void 
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
@@ -66,7 +80,7 @@ class Book extends AbstractEntity
      * Getter pour le titre.
      * @return string
      */
-    public function getTitle(): string 
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -76,7 +90,7 @@ class Book extends AbstractEntity
      * @param string $title
      * @return void
      */
-    public function setTitle(string $title): void 
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
@@ -85,7 +99,7 @@ class Book extends AbstractEntity
      * Getter pour la description.
      * @return string
      */
-    public function getDescription(): string 
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -95,7 +109,7 @@ class Book extends AbstractEntity
      * @param string $description
      * @return void
      */
-    public function setDescription(string $description): void 
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }
@@ -104,7 +118,7 @@ class Book extends AbstractEntity
      * Getter pour la disponibilité.
      * @return string
      */
-    public function getAvailability(): string 
+    public function getAvailability(): string
     {
         return $this->availability;
     }
@@ -114,7 +128,7 @@ class Book extends AbstractEntity
      * @param string $availability
      * @return void
      */
-    public function setAvailability(string $availability): void 
+    public function setAvailability(string $availability): void
     {
         $this->availability = $availability;
     }
@@ -124,30 +138,30 @@ class Book extends AbstractEntity
         return $this->url_image;
     }
 
-    public function setUrlImage(?string $url_image): void 
+    public function setUrlImage(?string $url_image): void
     {
         $this->url_image = $url_image;
     }
 
-    public function getAuthorId(): int 
+    public function getAuthorId(): int
     {
         return $this->author_id;
     }
 
-    public function setAuthorId(int $author_id): void 
+    public function setAuthorId(int $author_id): void
     {
         $this->author_id = $author_id;
     }
 
-    public function getUserId(): int 
+    public function getUserId(): int
     {
         return $this->user_id;
     }
 
-    public function setUserId(int $user_id): void 
+    public function setUserId(int $user_id): void
     {
         $this->user_id = $user_id;
     }
-      
-}   
-    
+
+}
+

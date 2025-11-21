@@ -1,0 +1,51 @@
+@use '../variables' as *;
+
+.book-card {
+    display: flex;
+    flex-direction: column;
+    background-color: $white;
+    border-radius: 0 0 10px 10px;
+    max-width: 200px;
+
+
+
+
+    img {
+        aspect-ratio: 1;
+        object-fit: cover;
+        margin-bottom: 20px;
+    }
+
+
+    .title {
+        
+        color: #000;
+        font-family: Inter;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin: 8px 14px;
+    }
+
+    .author {
+        color: var(--Gris-texte, #A6A6A6);
+        font-family: Inter;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin: 8px 14px;
+    }
+
+    .seller {
+        color: var(--Gris-texte, #A6A6A6);
+        font-family: Inter;
+        font-size: 10px;
+        font-style: italic;
+        font-weight: 400;
+        line-height: normal;
+        margin: 22px 14px;
+
+    }
+}

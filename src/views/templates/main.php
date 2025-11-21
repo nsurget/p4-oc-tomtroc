@@ -34,7 +34,7 @@
                 </div>
                 <div class="right-side">
                     <?php if (Utils::isUserConnected()): ?>
-                        <a href="index.php?action=<?php echo AppRoutes::SHOW_CHAT; ?>">Messagerie</a>
+                        <a href="index.php?action=<?php echo AppRoutes::SHOW_DISCUSSION; ?>">Messagerie</a>
                         <a href="index.php?action=<?php echo AppRoutes::USER_PROFILE; ?>">Mon compte</a>
                         <a href="index.php?action=<?php echo AppRoutes::LOGOUT; ?>">Se deconnecter</a>
                     <?php else: ?>

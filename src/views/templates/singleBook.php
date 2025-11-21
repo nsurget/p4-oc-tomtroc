@@ -13,7 +13,9 @@
             <p><?= $user->getPseudo() ?></p>
 
         </div>
-
+        <form action="?action=<?= AppRoutes::SHOW_DISCUSSION ?>&id=<?= $user->getId() ?>">
+            <button type="submit">Envoyer un message</button>
+        </form>
     </div>
     
 </section>

@@ -43,8 +43,17 @@ try {
             break;
 
         case AppRoutes::SHOW_BOOKS:
+
             $bookController = new BookController();
-            $bookController->showBooks();
+            $search = Utils::request('search');
+            
+
+            if (!empty($search)) {
+                $search = htmlspecialchars($search);
+                $bookController->showSearchBooks($search);
+            } else {
+                $bookController->showBooks();
+            }
             break;
 
         case AppRoutes::USER_PROFILE:
@@ -63,9 +72,29 @@ try {
             break;
 
         case AppRoutes::SHOW_SINGLE_BOOK:
-            $userController = new BookController();
-            $userController->showBook();
+            $bookController = new BookController();
+            $bookController->showBook();
             break;    
+
+        case AppRoutes::SHOW_DISCUSSION:
+            $discussionController = new DiscussionController();
+            $discussionController->showDiscussion();
+            break; 
+            
+        case AppRoutes::ADD_BOOK_FORM:
+            $bookController = new BookController();
+            $bookController->addBookForm();
+            break;
+
+        case AppRoutes::EDIT_BOOK_FORM:
+            $bookController = new BookController();
+            $bookController->editBookForm();
+            break;
+
+        case AppRoutes::SAVE_BOOK:
+            $bookController = new BookController();
+            $bookController->saveBook();
+            break;
             
         default:
             throw new Exception("La page demandée n'existe pas.");
