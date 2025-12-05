@@ -107,6 +107,47 @@ class Utils {
             'unavailable' => 'Indisponible',
         ];
     }
+
+    public static function uploadFile($file) : string
+    {
+
+        if ($file['error'] !== UPLOAD_ERR_OK) {
+            throw new Exception("Le fichier n'a pas pu être téléchargé.");
+        }
+
+        $allowedTypes = [
+            'image/jpeg',
+            'image/png',
+            'image/gif',
+            'image/webp',
+        ];
+        if (!in_array($file['type'], $allowedTypes)) {
+            throw new Exception("Le fichier n'est pas une image.");
+        }
+
+        // Renommer le fichier avec un nom unique
+        $uploadDirectory = __DIR__ . '/../uploads/users/';
+
+        if (!file_exists($uploadDirectory)) {
+            mkdir($uploadDirectory, 0777, true);
+        }
+        $uniqueFilename = uniqid() . '-' . $file['name'];
+        $uploadFile = $uploadDirectory . $uniqueFilename;
+        move_uploaded_file($file['tmp_name'], $uploadFile);
+        $urlFile = '/uploads/users/' . $uniqueFilename;
+        
+        return $urlFile;
+    }
+
+    public static function checkUserConnected() : void
+    {
+        if (!isset($_SESSION['idUser'])) {
+            header('Location: ?action=' . AppRoutes::LOGIN_FORM);
+            exit;
+        }
+    }
+
+    
     
 
     

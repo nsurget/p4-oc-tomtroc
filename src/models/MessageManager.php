@@ -17,6 +17,12 @@ class MessageManager extends AbstractEntityManager
         }
         return $messages;
     }
+
+    public function addMessage(int $discussion_id, int $user_id, string $content): void
+    {
+        $sql = "INSERT INTO messages (discussion_id, user_id, content) VALUES (:discussion_id, :user_id, :content)";
+        $this->db->query($sql, ['discussion_id' => $discussion_id, 'user_id' => $user_id, 'content' => $content]);
+    }
  
 }   
     

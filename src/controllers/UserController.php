@@ -87,11 +87,10 @@ class UserController
 
     public function showUserProfile()
     {
-        if (!isset($_SESSION['user'])) {
-            throw new Exception("L'utilisateur n'est pas connecté.");
-        }
+        Utils::checkUserConnected();
 
-        $user = $_SESSION['user'];
+        $userManager = new UserManager();
+        $user = $userManager->getUserById($_SESSION['idUser']);
 
         $bookManager = new BookManager();
         $books = $bookManager->getBooksByUser($user->getId());
@@ -103,9 +102,7 @@ class UserController
 
     public function editUser()
     {
-        if (!isset($_SESSION['user'])) {
-            throw new Exception("L'utilisateur n'est pas connecté.");
-        }
+        Utils::checkUserConnected();
 
         $pseudo = Utils::request("pseudo");
         $email = Utils::request("email");
@@ -114,7 +111,7 @@ class UserController
         $userManager = new UserManager();
         $userManager->editUser($pseudo, $email, $password);
 
-        $user = $_SESSION['user'];
+        $user = $userManager->getUserById($_SESSION['idUser']);
         if (!empty($pseudo)) {
             $user->setPseudo($pseudo);
         }
@@ -129,11 +126,20 @@ class UserController
     }
 
     public function editUserPicture() {
-        if (!isset($_SESSION['user'])) {
-            throw new Exception("L'utilisateur n'est pas connecté.");
-        }
+        Utils::checkUserConnected();
 
-        // TO-DO
+        $id = Utils::request("id");
+        $profilUrl = Utils::request("profil-url");
+        if (empty($profilUrl)) {
+            $profilPicture = $_FILES['profil-picture'];
+            
+            $profilUrl = Utils::uploadFile($profilPicture);
+        }
+            
+
+        $userManager = new UserManager();
+        $userManager->editUserPicture($profilUrl, $id);
+        
 
 
 

@@ -56,7 +56,7 @@
         <a href="index.php?action=<?php echo AppRoutes::HOME; ?>">Tom Troc©</a>
         <img src="./uploads/footer-logo.svg" alt="Logo">
     </footer>
-    <script src="./js/script.js"></script>
+    <script src="./js/script.js" type="module"></script>
 </body>
 
 </html>

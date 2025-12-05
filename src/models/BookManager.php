@@ -9,7 +9,7 @@ class BookManager extends AbstractEntityManager
     {
         $sql = "SELECT 
                     books.*, 
-                    CONCAT(authors.first_name, ' ', authors.last_name) AS author_name,
+                    authors.name AS author_name,
                     users.pseudo AS user_pseudo 
                 FROM books 
                 INNER JOIN authors ON books.author_id = authors.id 
@@ -31,12 +31,12 @@ class BookManager extends AbstractEntityManager
     {
         $sql = "SELECT 
                     books.*, 
-                    CONCAT(authors.first_name, ' ', authors.last_name) AS author_name,
+                    authors.name AS author_name,
                     users.pseudo AS user_pseudo 
                 FROM books 
                 INNER JOIN authors ON books.author_id = authors.id 
                 INNER JOIN users ON books.user_id = users.id 
-                WHERE books.title LIKE :search OR authors.first_name LIKE :search OR authors.last_name LIKE :search OR users.pseudo LIKE :search;";
+                WHERE books.title LIKE :search OR authors.name LIKE :search OR users.pseudo LIKE :search;";
 
         $result = $this->db->query($sql, ['search' => "%$search%"]);
 
@@ -54,7 +54,7 @@ class BookManager extends AbstractEntityManager
     {
         $sql = "SELECT 
                     books.*, 
-                    CONCAT(authors.first_name, ' ', authors.last_name) AS author_name,
+                    authors.name AS author_name,
                     users.pseudo AS user_pseudo 
                 FROM books 
                 INNER JOIN authors ON books.author_id = authors.id 
@@ -77,7 +77,7 @@ class BookManager extends AbstractEntityManager
     {
         $sql = "SELECT 
                     books.*, 
-                    CONCAT(authors.first_name, ' ', authors.last_name) AS author_name,
+                    authors.name AS author_name,
                     users.pseudo AS user_pseudo 
                 FROM books 
                 INNER JOIN authors ON books.author_id = authors.id 
@@ -106,7 +106,7 @@ class BookManager extends AbstractEntityManager
 
         $sql = "SELECT 
                     books.*, 
-                    CONCAT(authors.first_name, ' ', authors.last_name) AS author_name ,
+                    authors.name AS author_name,
                     users.pseudo AS user_pseudo
                 FROM books 
                 INNER JOIN authors ON books.author_id = authors.id 

@@ -1,5 +1,6 @@
 <?php
 
+
 require_once 'config/autoload.php';
 require_once 'config/config.php';
 
@@ -94,6 +95,11 @@ try {
         case AppRoutes::SAVE_BOOK:
             $bookController = new BookController();
             $bookController->saveBook();
+            break;
+
+        case AppRoutes::SEND_MESSAGE:
+            $discussionController = new DiscussionController();
+            $discussionController->sendMessage();
             break;
             
         default:

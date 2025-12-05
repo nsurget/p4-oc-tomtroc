@@ -58,4 +58,10 @@ class UserManager extends AbstractEntityManager
             throw new Exception("Une erreur est survenue lors de la modification de l'utilisateur.");
         }
     }
+
+    public function editUserPicture(string $profilPicture, int $id) : void
+    {
+        $sql = "UPDATE users SET profil_picture = :profil_picture WHERE id = :id";
+        $this->db->query($sql, ['profil_picture' => $profilPicture, 'id' => $id]);
+    }
 }

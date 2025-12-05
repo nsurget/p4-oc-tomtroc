@@ -1,6 +1,6 @@
 <section class="single-book">
     <div class="book-picture">
-        <?= $book->displayImage() ?> 
+        <?= $book->displayImage() ?>
     </div>
     <div class="book-info">
         <h2><?= $book->getTitle() ?></h2>
@@ -13,9 +13,9 @@
             <p><?= $user->getPseudo() ?></p>
 
         </div>
-        <form action="?action=<?= AppRoutes::SHOW_DISCUSSION ?>&id=<?= $user->getId() ?>">
-            <button type="submit">Envoyer un message</button>
-        </form>
+        <? if (!empty($_SESSION['idUser']) && $_SESSION['idUser'] != $user->getId()): ?>
+            <a href="?action=<?= AppRoutes::SHOW_DISCUSSION ?>&id=<?= $user->getId() ?>">Envoyer un message</a>
+        <? endif; ?>
     </div>
-    
+
 </section>

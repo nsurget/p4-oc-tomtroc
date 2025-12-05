@@ -13,11 +13,13 @@ class User extends AbstractEntity
     
      public function displayImage() : string
     {
+        
         if ($this->getProfilPicture() === null) {
-            return '<img src="' . 'uploads/default.png' . '" alt="' . $this->getPseudo() . '">';
+            return '<img src="' . 'uploads/default.png' . '" alt="Photo de profil de ' . $this->getPseudo() . '">';
         }
-
-        return '<img src="' . $this->getProfilPicture() . '" alt="' . $this->getPseudo() . '">';
+        
+        
+        return '<img src="' . $this->getProfilPicture() . '" >';
     }
 
     public function getMemberSince() : string

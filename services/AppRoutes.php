@@ -39,7 +39,7 @@ final class AppRoutes
     // --- Chat ---
     public const SHOW_DISCUSSION = 'showDiscussion';
 
-    public const ADD_MESSAGE = 'addMessage';
+    public const SEND_MESSAGE = 'sendMessage';
 
     // --- Policy & Mentions ---
     public const POLICY = 'policy';

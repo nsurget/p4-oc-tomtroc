@@ -1,3 +1,4 @@
 .DS_Store
 config/config.php
 node_modules
+uploads/users

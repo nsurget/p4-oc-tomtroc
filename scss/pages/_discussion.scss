@@ -1,0 +1,203 @@
+@use '../variables' as *;
+
+section.discussion {
+    display: flex;
+    gap: 35px;
+    height: calc(100vh - 150px);
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        background-color: $gris-clair;
+    }
+
+    .left-side {
+        flex: 1;
+        max-width: 308px;
+        background-color: $background-light;
+
+        a {
+            text-decoration: none;
+            color: $text;
+        }
+
+        a:has(.active) {
+            cursor: unset;
+            pointer-events: none;
+        }
+
+        h2 {
+            margin: 55px 34px 20px;
+        }
+
+        .discussion-container {
+
+            .discussion-item {
+                display: flex;
+                gap: 10px;
+                padding: 20px 34px;
+
+                &:hover {
+                    background-color: $gris-clair;
+                }
+
+                &.active {
+                    background-color: $white;
+                    cursor: unset;
+                    pointer-events: none;
+                }
+
+                .picture {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        width: 46px;
+                        height: 46px;
+                        border-radius: 50%;
+                        overflow: hidden;
+                    }
+                }
+
+                .info {
+                    flex: 1;
+
+                    .top {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 10px;
+
+                        color: $gris-fonc;
+                        font-family: $body-font-family;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: normal;
+                    }
+
+                    .bottom {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 10px;
+                        overflow: hidden;
+                        color: var(--Gris-texte, #A6A6A6);
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        font-family: $body-font-family;
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: normal;
+                    }
+                }
+            }
+        }
+    }
+
+    .right-side {
+        flex: 2;
+
+        .user-info {
+            display: flex;
+            gap: 10px;
+            padding: 20px 34px;
+
+            .picture {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    width: 46px;
+                    height: 46px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                }
+            }
+
+            .info {
+                flex: 1;
+                color: $gris-fonc;
+                font-family: $body-font-family;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .messages-container {
+            overflow-y: auto;
+            height: calc(100vh - 350px); 
+
+            .messages {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                gap: 10px;
+                min-height: 100%;
+                
+
+                .message {
+                    display: flex;
+                    flex-direction: column;
+
+                    
+                    
+
+                    .top {
+                        display: flex;
+                        gap: 10px;
+                        align-items: center;
+                        margin-bottom: 5px;
+                        color: $gris-text;
+                        font-family: $body-font-family;
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: normal;
+
+                        img {
+                            width: 24px;
+                            height: 24px;
+                            border-radius: 50%;
+                            overflow: hidden;
+                        }
+                    }
+
+                    .content {
+                        padding: 10px 18px;
+                        background-color: $white;
+                        border-radius: 3px;
+                        overflow: hidden;
+                        color: $gris-fonc;
+                        font-family: $body-font-family;
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: normal;
+                        width: fit-content;
+                    }
+
+                    &.right {
+                        align-self: flex-end;
+
+                        .content {
+                            background-color: $message-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

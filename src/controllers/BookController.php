@@ -7,7 +7,6 @@ class BookController
         $bookManager = new BookManager();
         $books = $bookManager->getAllBooks();
 
-
         $view = new View("Nos livres à l'échange");
         $view->render("books", ['books' => $books]);
     }
@@ -43,37 +42,46 @@ class BookController
 
     public function addBookForm(): void
     {
-        if (!isset($_SESSION['user'])) {
-            throw new Exception("Vous devez être connecté pour ajouter un livre.");
-        }
+        Utils::checkUserConnected();
+
+        $authorManager = new AuthorManager();
+        $authors = $authorManager->getAllAuthors();
 
         $view = new View("Ajouter un livre");
-        $view->render("editBookForm");
+        $view->render("editBookForm", ['authors' => $authors]);
     }
 
     public function editBookForm(): void
     {
-        if (!isset($_SESSION['user'])) {
-            throw new Exception("Vous devez être connecté pour ajouter un livre.");
-        }
+        Utils::checkUserConnected();
         $id = Utils::request('id');
         $bookManager = new BookManager();
         $book = $bookManager->getBookById($id);
 
+        $authorManager = new AuthorManager();
+        $authors = $authorManager->getAllAuthors();
+
         $view = new View("Ajouter un livre");
-        $view->render("editBookForm", ['book' => $book]);
+        $view->render("editBookForm", ['book' => $book, 'authors' => $authors]);
     }
 
     public function saveBook(): void
     {
-        if (!isset($_SESSION['user'])) {
-            throw new Exception("Vous devez être connecté pour ajouter un livre.");
+        Utils::checkUserConnected();
+        
+        $user_id = $_SESSION['user_id'];
+        
+        $author_name = Utils::request('author_name');
+        $authorManager = new AuthorManager();
+        $author_id = $authorManager->getAuthorIdByName($author_name);
+        if ($author_id === null) {
+            $author_id = $authorManager->addAuthor($author_name);
         }
+        
+        
         
         $id = Utils::request('id');
         $title = Utils::request('title');
-        $author_id = Utils::request('author_id');
-        $user_id = $_SESSION['user_id'];
         $description = Utils::request('description');
         $availability = Utils::request('availability');
         $bookManager = new BookManager();

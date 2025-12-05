@@ -8,8 +8,7 @@
 class Author extends AbstractEntity 
 {
     protected int $id;
-    protected string $lastname;
-    protected string $firstname;
+    protected string $name;
     
 
     public function getId(): int {
@@ -20,21 +19,14 @@ class Author extends AbstractEntity
         $this->id = $id;
     }
     
-    public function getLastname(): string {
-        return $this->lastname;
+    public function getName(): string {
+        return $this->name;
     }
     
-    public function setLastname(string $lastname): void {
-        $this->lastname = $lastname;
+    public function setName(string $name): void {
+        $this->name = $name;
     }
     
-    public function getFirstname(): string {
-        return $this->firstname;
-    }
-    
-    public function setFirstname(string $firstname): void {
-        $this->firstname = $firstname;
-    }
     
       
 }   

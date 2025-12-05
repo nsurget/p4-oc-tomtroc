@@ -9,22 +9,23 @@
     <div class="user-profile-container">
         <div class="user-profil">
             <div class="user-picture">
-                <?php if ($user->getProfilPicture() != null): ?>
-                    <img src="<?= $user->displayImage() ?>" alt="<?= $user->getPseudo() ?>">
-                <?php else: ?>
-                    <img src="./uploads/default.png" alt="<?= $user->getPseudo() ?>">
-                <?php endif; ?>
-                <button>Modifier</button>
-                <div class="edit-picture-form">
+                <?= $user->displayImage() ?>
+                <button class="edit-picture-button">Modifier</button>
+                <div class="edit-picture-form" style="display: none;">
                     <form action="?action=<?= AppRoutes::USER_EDIT_PICTURE ?>" method="post"
                         enctype="multipart/form-data">
-                        <label>Uploader une image</label>
-                        <input type="file" name="profil-picture">
-                        <p>Format accepté : .png, .jpg, .jpeg, .gif</p>
-                        <p>Taille max : 2Mo</p>
-                        <p>ou via un url :</p>
-                        <label>URL de l'image</label>
-                        <input type="url" name="profil-url">
+                        <input type="hidden" name="id" value="<?= $user->getId() ?>">
+                        <div class="upload-picture">
+                            <label>Uploader une image</label>
+                            <input type="file" name="profil-picture" id="profil-picture">
+                            <p>Format accepté : .png, .jpg, .jpeg, .gif</p>
+                            <p>Taille max : 2Mo</p>
+                        </div>
+                        <div class="url-picture">
+                            <p>ou via un url :</p>
+                            <label>URL de l'image</label>
+                            <input type="url" name="profil-url" id="profil-url">
+                        </div>
                         <button type="submit">Enregistrer</button>
                     </form>
                 </div>
@@ -33,7 +34,8 @@
                 <p class="user-pseudo"><?= $user->getPseudo() ?></p>
                 <p class="user-member-since"><?= $user->getMemberSince() ?></p>
                 <p class="user-library">BIBLIOTHEQUE</p>
-                <p class="user-library-count"><img src="./uploads/book.svg" alt="icon de livres"> <?= count($books) ?> Livres</p>
+                <p class="user-library-count"><img src="./uploads/book.svg" alt="icon de livres"> <?= count($books) ?>
+                    Livres</p>
                 <a href="?action=<?= AppRoutes::ADD_BOOK_FORM ?>">Ajouter un livre</a>
             </div>
         </div>
@@ -66,8 +68,10 @@
                 <?php foreach ($books as $book): ?>
                     <tr>
                         <td><?= $book->displayImage() ?></td>
-                        <td><a href="?action=<?= AppRoutes::SHOW_SINGLE_BOOK ?>&id=<?= $book->getId() ?>"><?= $book->getTitle() ?></a></td>
-                        <td><?= $book->getAuthorId() ?></td>
+                        <td><a
+                                href="?action=<?= AppRoutes::SHOW_SINGLE_BOOK ?>&id=<?= $book->getId() ?>"><?= $book->getTitle() ?></a>
+                        </td>
+                        <td><?= $book->getAuthorName() ?></td>
                         <td><?= $book->getDescription() ?></td>
                         <td><?= $book->getAvailability() ?></td>
                         <td>

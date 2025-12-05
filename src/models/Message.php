@@ -13,8 +13,26 @@ class Message extends AbstractEntity
     
     protected int $discustion_id;
     
-    protected ?string $book_id;
     protected ?DateTime $created_at;
+
+    // protected ?string $book_id;
+
+
+
+    public function getFormatCreatedAt(): string {
+        if ($this->created_at === null) {
+            return '';
+        }
+        if ($this->created_at->format('Y-m-d') === date('Y-m-d')) {
+            return $this->created_at->format('H:i');
+        }
+
+        if ($this->created_at->format('Y-m-d') === date('Y-m-d', strtotime('-1 day'))) {
+            return $this->created_at->format('H:i d.m');
+        }
+
+        return $this->created_at->format('H:i d.m.Y');
+    }
 
     // --- GETTER & SETTER
 
@@ -61,20 +79,12 @@ class Message extends AbstractEntity
         $this->discustion_id = $discustion_id;
     }
     
-    public function getBookId(): ?string {
-        return $this->book_id;
-    }
-    
-    public function setBookId(?string $book_id): void {
-        $this->book_id = $book_id;
-    }
-    
     public function getCreatedAt(): ?DateTime {
         return $this->created_at;
     }
     
-    public function setCreatedAt(?DateTime $created_at): void {
-        $this->created_at = $created_at;
-    }     
+    public function setCreatedAt(?string $created_at): void {
+        $this->created_at = DateTime::createFromFormat('Y-m-d H:i:s', $created_at);
+    }
 }   
     
