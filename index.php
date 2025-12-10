@@ -75,6 +75,8 @@ try {
         case AppRoutes::USER_PROFIL:
             $userController = new UserController();
             $id = Utils::request('id');
+            $id = intval($id);
+            
             if (empty($id) || !empty($_SESSION['idUser']) && $_SESSION['idUser'] == $id) {
                 $userController->showUserProfil();
             } else {

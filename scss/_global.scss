@@ -95,6 +95,13 @@ header {
 
 
                 }
+
+                .count {
+                    background-color: $gris-fonc;   
+                    color: $gris-clair;
+                    border-radius: 7px;
+                    padding: 3px 4px;
+                }
             }
         }
     }

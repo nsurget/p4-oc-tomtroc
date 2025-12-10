@@ -19,7 +19,9 @@ class UserController
     {
         // On récupère les données du formulaire.
         $email = Utils::request("email");
+        $email = htmlspecialchars($email);
         $password = Utils::request("password");
+        $password = htmlspecialchars($password);
 
         // On vérifie que les données sont valides.
         if (empty($email) || empty($password)) {
@@ -50,8 +52,11 @@ class UserController
     {
         // On récupère les données du formulaire.
         $pseudo = Utils::request("pseudo");
+        $pseudo = htmlspecialchars($pseudo);
         $email = Utils::request("email");
+        $email = htmlspecialchars($email);
         $password = Utils::request("password");
+        $password = htmlspecialchars($password);
 
         // On vérifie que les données sont valides.
         if (empty($pseudo) || empty($email) || empty($password)) {
@@ -119,8 +124,11 @@ class UserController
         Utils::checkUserConnected();
 
         $pseudo = Utils::request("pseudo");
+        $pseudo = htmlspecialchars($pseudo);
         $email = Utils::request("email");
+        $email = htmlspecialchars($email);
         $password = Utils::request("password");
+        $password = htmlspecialchars($password);
 
         $userManager = new UserManager();
         $userManager->editUser($pseudo, $email, $password);
@@ -144,7 +152,10 @@ class UserController
         Utils::checkUserConnected();
 
         $id = Utils::request("id");
+        $id = intval($id);
         $profilUrl = Utils::request("profil-url");
+        $profilUrl = htmlspecialchars($profilUrl);
+        
         if (empty($profilUrl)) {
             $profilPicture = $_FILES['profil-picture'];
             

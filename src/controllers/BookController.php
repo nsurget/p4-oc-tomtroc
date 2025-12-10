@@ -24,6 +24,7 @@ class BookController
     public function showBook(): void
     {
         $id = Utils::request('id');
+        $id = intval($id);
         if (empty($id)) {
             Utils::redirect(AppRoutes::SHOW_BOOKS);
         }
@@ -59,6 +60,7 @@ class BookController
     {
         Utils::checkUserConnected();
         $id = Utils::request('id');
+        $id = intval($id);
         $bookManager = new BookManager();
         $book = $bookManager->getBookById($id);
 
@@ -75,6 +77,7 @@ class BookController
 
         $user_id = $_SESSION['idUser'];
         $author_name = Utils::request('author_name');
+        $author_name = htmlspecialchars($author_name);
         $authorManager = new AuthorManager();
         $author_id = $authorManager->getAuthorIdByName($author_name);
         
@@ -83,6 +86,7 @@ class BookController
         }
 
         $bookUrl = Utils::request("book-url");
+        $bookUrl = htmlspecialchars($bookUrl);
         if (empty($profilUrl)) {
             $bookPicture = $_FILES['book-picture'];
             $bookUrl = Utils::uploadFile($bookPicture);
@@ -92,8 +96,11 @@ class BookController
         
         
         $id = Utils::request('id');
+        $id = intval($id);
         $title = Utils::request('title');
+        $title = htmlspecialchars($title);
         $description = Utils::request('description');
+        $description = htmlspecialchars($description);
         $availability = Utils::request('availability');
         
         $bookManager = new BookManager();

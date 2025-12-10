@@ -35,12 +35,12 @@
         <?php if (!empty($request_user)): ?>
             <div class="user-info">
                 <a href="?action=<?= AppRoutes::USER_PROFIL ?>&id=<?= $request_user->getId() ?>">
-                <div class="picture">
-                    <?= $request_user->displayImage() ?>
-                </div>
-                <div class="info">
-                    <p><?= $request_user->getPseudo() ?></p>
-                </div>
+                    <div class="picture">
+                        <?= $request_user->displayImage() ?>
+                    </div>
+                    <div class="info">
+                        <p><?= $request_user->getPseudo() ?></p>
+                    </div>
                 </a>
             </div>
         <?php endif; ?>
@@ -75,13 +75,23 @@
                     <?php endforeach; ?>
                 </div>
             </div>
+        <?php else: ?>
+            <div class="messages-container">
+                <div class="messages">
+                    <div class="message">
+                        <div class="top">
+                            <p>Aucun message</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <?php endif; ?>
 
         <?php if (!empty($request_user)): ?>
-        <form action="?action=<?= AppRoutes::SEND_MESSAGE ?>&id=<?= $request_user->getId() ?>" method="post">
-            <input type="text" name="content" placeholder="Tapez votre message ici">
-            <button type="submit" class="btn btn-primary">Envoyer</button>
-        </form>
+            <form action="?action=<?= AppRoutes::SEND_MESSAGE ?>&id=<?= $request_user->getId() ?>" method="post">
+                <input type="text" name="content" placeholder="Tapez votre message ici">
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+            </form>
         <?php endif; ?>
     </div>
 

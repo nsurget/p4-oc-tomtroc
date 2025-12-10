@@ -151,7 +151,7 @@ class Utils {
     {
         $discussionManager = new DiscussionManager();
         $newMessagesCount = $discussionManager->getNewMessagesCountByUser($userId);
-        return $newMessagesCount ? $newMessagesCount : '';
+        return $newMessagesCount ? '<span class="count">'.$newMessagesCount.'</span>' : '';
     }
 
 }

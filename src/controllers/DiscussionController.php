@@ -12,6 +12,7 @@ class DiscussionController
         Utils::checkUserConnected();
 
         $requestId = Utils::request('id');
+        $requestId = intval($requestId);
 
         $discussionManager = new DiscussionManager();
         $discussions = $discussionManager->getDiscussionsByUser($_SESSION['idUser']);
@@ -89,7 +90,9 @@ class DiscussionController
         Utils::checkUserConnected();
 
         $requestUserId = Utils::request('id');
+        $requestUserId = intval($requestUserId);
         $messageContent = Utils::request('content');
+        $messageContent = htmlspecialchars($messageContent);
 
         $discussionManager = new DiscussionManager();
         $discussion = $discussionManager->getDiscussionById($requestUserId, $_SESSION['idUser']);
