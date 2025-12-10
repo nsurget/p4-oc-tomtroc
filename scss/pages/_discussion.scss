@@ -3,8 +3,7 @@
 section.discussion {
     display: flex;
     gap: 35px;
-    height: calc(100vh - 150px);
-
+    height: 100%;
     &::after {
         content: "";
         position: absolute;
@@ -20,6 +19,7 @@ section.discussion {
         flex: 1;
         max-width: 308px;
         background-color: $background-light;
+        overflow-y: auto;
 
         a {
             text-decoration: none;
@@ -105,10 +105,10 @@ section.discussion {
     .right-side {
         flex: 2;
 
-        .user-info {
+        .user-info a{
             display: flex;
             gap: 10px;
-            padding: 20px 34px;
+            padding: 20px 0px;
 
             .picture {
                 display: flex;
@@ -139,6 +139,7 @@ section.discussion {
         .messages-container {
             overflow-y: auto;
             height: calc(100vh - 350px); 
+            min-height: 350px;
 
             .messages {
                 display: flex;
@@ -191,12 +192,36 @@ section.discussion {
 
                     &.right {
                         align-self: flex-end;
+                        margin-right: 5px;
 
                         .content {
                             background-color: $message-color;
                         }
                     }
+
+
+                    &:last-child {
+                        margin-bottom: 40px;
+                    }
                 }
+            }
+        }
+
+        form {
+            display: flex;
+            gap: 21px;
+            width: 100%;
+            margin-bottom: 66px;
+            
+
+            input {
+                margin: 0;
+                flex: 1;
+                max-width: unset;
+            }
+
+            .btn {
+                padding: 15px 38px;
             }
         }
     }

@@ -34,8 +34,8 @@
                 </div>
                 <div class="right-side">
                     <?php if (Utils::isUserConnected()): ?>
-                        <a href="index.php?action=<?php echo AppRoutes::SHOW_DISCUSSION; ?>">Messagerie</a>
-                        <a href="index.php?action=<?php echo AppRoutes::USER_PROFILE; ?>">Mon compte</a>
+                        <a href="index.php?action=<?php echo AppRoutes::SHOW_DISCUSSION; ?>">Messagerie <?= Utils::getNewMessagesCount($_SESSION['idUser']) ?></a>
+                        <a href="index.php?action=<?php echo AppRoutes::USER_PROFIL; ?>">Mon compte</a>
                         <a href="index.php?action=<?php echo AppRoutes::LOGOUT; ?>">Se deconnecter</a>
                     <?php else: ?>
                         <a href="index.php?action=<?php echo AppRoutes::LOGIN_FORM; ?>" <?php echo Utils::request('action') === AppRoutes::LOGIN_FORM ? 'class="active"' : ''; ?>>Se connecter</a>

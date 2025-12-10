@@ -147,9 +147,11 @@ class Utils {
         }
     }
 
-    
-    
-
-    
+    public static function getNewMessagesCount(int $userId) : string
+    {
+        $discussionManager = new DiscussionManager();
+        $newMessagesCount = $discussionManager->getNewMessagesCountByUser($userId);
+        return $newMessagesCount ? $newMessagesCount : '';
+    }
 
 }

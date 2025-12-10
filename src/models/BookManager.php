@@ -91,7 +91,7 @@ class BookManager extends AbstractEntityManager
         if ($book) {
             return new Book($book);
         }
-        return null;
+        return new Book();
     }
 
     public function getRecentBooks(int $limit = 4): array
@@ -126,7 +126,7 @@ class BookManager extends AbstractEntityManager
         return $books;
     }
 
-    public function saveBook(Book $book): void
+    public function saveBook(Book $book): int
     {
         
         if ($book->getId() == null) {
@@ -143,5 +143,8 @@ class BookManager extends AbstractEntityManager
             'availability' => $book->getAvailability(),
             'id' => $book->getId()
         ]);
+
+        $book_id = $this->db->lastInsertId();
+        return $book_id;
     }
 }

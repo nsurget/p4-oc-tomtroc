@@ -24,6 +24,10 @@ class BookController
     public function showBook(): void
     {
         $id = Utils::request('id');
+        if (empty($id)) {
+            Utils::redirect(AppRoutes::SHOW_BOOKS);
+        }
+
         $bookManager = new BookManager();
         $book = $bookManager->getBookById($id);
 
@@ -68,9 +72,9 @@ class BookController
     public function saveBook(): void
     {
         Utils::checkUserConnected();
-        
-        $user_id = $_SESSION['user_id'];
-        
+
+        $user_id = $_SESSION['idUser'];
+        var_dump($_POST);
         $author_name = Utils::request('author_name');
         $authorManager = new AuthorManager();
         $author_id = $authorManager->getAuthorIdByName($author_name);
@@ -79,13 +83,14 @@ class BookController
         }
         
         
-        
         $id = Utils::request('id');
         $title = Utils::request('title');
         $description = Utils::request('description');
         $availability = Utils::request('availability');
+        
         $bookManager = new BookManager();
         $book = $bookManager->getBookById($id);
+        $book->setId($id);
         $book->setTitle($title);
         $book->setAuthorId($author_id);
         $book->setUserId($user_id);
@@ -93,7 +98,8 @@ class BookController
         $book->setAvailability($availability);
 
         
-        $bookManager->saveBook($book);
+        $id = $bookManager->saveBook($book);
+
 
         Utils::redirect(AppRoutes::SHOW_SINGLE_BOOK , ['id' => $id]);
     }

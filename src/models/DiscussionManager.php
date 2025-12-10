@@ -64,10 +64,16 @@ class DiscussionManager extends AbstractEntityManager
         return $discussions;
     }
 
-    public function setNewMessagesCount(int $discussion_id, int $new_messages_count): void
+    public function setNewMessagesCountUser1(int $discussion_id, int $new_messages_count_user_1): void
     {
-        $sql = "UPDATE discussions SET new_messages_count = :new_messages_count WHERE id = :discussion_id";
-        $this->db->query($sql, ['discussion_id' => $discussion_id, 'new_messages_count' => $new_messages_count]);
+        $sql = "UPDATE discussions SET new_messages_count_user_1 = :new_messages_count_user_1 WHERE id = :discussion_id";
+        $this->db->query($sql, ['discussion_id' => $discussion_id, 'new_messages_count_user_1' => $new_messages_count_user_1]);
+    }
+
+    public function setNewMessagesCountUser2(int $discussion_id, int $new_messages_count_user_2): void
+    {
+        $sql = "UPDATE discussions SET new_messages_count_user_2 = :new_messages_count_user_2 WHERE id = :discussion_id";
+        $this->db->query($sql, ['discussion_id' => $discussion_id, 'new_messages_count_user_2' => $new_messages_count_user_2]);
     }
 
     public function getDiscussionById(int $user_1_id, int $user_2_id): ?Discussion
@@ -78,18 +84,63 @@ class DiscussionManager extends AbstractEntityManager
         return $row ? new Discussion($row) : null;
     }
 
-    public function addOneNewMessagesCount(int $discussion_id): void
+    public function addOneNewMessagesCount(Discussion $discussion, int $user_id): void
     {
-        $sql = "UPDATE discussions SET new_messages_count = new_messages_count + 1 WHERE id = :discussion_id";
+        if ($user_id === $discussion->getUser1Id()) {
+            $this->addOneNewMessagesCountUser1($discussion->getId());
+            return;
+        }
+        $this->addOneNewMessagesCountUser2($discussion->getId());
+    }
+
+    public function resetNewMessagesCount(Discussion $discussion, int $user_id): void
+    {
+        if ($user_id === $discussion->getUser1Id()) {
+            $this->setNewMessagesCountUser1($discussion->getId(), 0);
+            return;
+        }
+        $this->setNewMessagesCountUser2($discussion->getId(), 0);
+    }
+
+    public function addOneNewMessagesCountUser1(int $discussion_id): void
+    {
+        $sql = "UPDATE discussions SET new_messages_count_user_1 = new_messages_count_user_1 + 1 WHERE id = :discussion_id";
+        $this->db->query($sql, ['discussion_id' => $discussion_id]);
+    }
+
+    public function addOneNewMessagesCountUser2(int $discussion_id): void
+    {
+        $sql = "UPDATE discussions SET new_messages_count_user_2 = new_messages_count_user_2 + 1 WHERE id = :discussion_id";
         $this->db->query($sql, ['discussion_id' => $discussion_id]);
     }
 
     public function addDiscussion(int $user_1_id, int $user_2_id): Discussion
     {
         $sql = "INSERT INTO discussions (user_1_id, user_2_id) VALUES (:user_1_id, :user_2_id)";
-        $stmt = $this->db->query($sql, ['user_1_id' => $user_1_id, 'user_2_id' => $user_2_id]);
+        $this->db->query($sql, ['user_1_id' => $user_1_id, 'user_2_id' => $user_2_id]);
+        $discussion_id = $this->db->lastInsertId();
+        $discussion = $this->getDiscussionById($user_1_id, $user_2_id);
+        return $discussion;
+    }
+
+    public function getNewMessagesCountByUser(int $user_id): int
+    {
+        // SQL query using CASE to condition which column to sum
+        $sql = "SELECT SUM(
+                CASE 
+                    WHEN user_1_id = :user_id THEN new_messages_count_user_1
+                    WHEN user_2_id = :user_id THEN new_messages_count_user_2
+                    ELSE 0 
+                END
+            ) AS total_new_messages 
+            FROM discussions 
+            WHERE user_1_id = :user_id OR user_2_id = :user_id";
+
+        $stmt = $this->db->query($sql, ['user_id' => $user_id]);
         $row = $stmt->fetch();
-        return $row ? new Discussion($row) : null;
+
+        // Cast result to int because SUM returns null if no rows match
+        return (int) $row['total_new_messages'];
     }
 
 }

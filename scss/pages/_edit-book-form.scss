@@ -1,0 +1,21 @@
+@use '../variables' as *;
+
+div.book-form {
+    .return {
+        margin-top: 30px;
+        cursor: pointer;
+        color: $gris-text;
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    h2 {
+        margin: 30px 0;
+    }
+
+    form {
+        display: flex;
+        background-color: $white;
+        border-radius: 20px;   
+    }
+}

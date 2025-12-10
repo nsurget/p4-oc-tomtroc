@@ -1,0 +1,24 @@
+@use '../variables' as *;
+
+section.last-books {
+    margin-top: 80px;
+    margin-bottom: 64px;
+
+    h2 {
+        margin-bottom: 80px;
+        text-align: center;
+    }
+
+    .books {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 38px;
+    }
+
+    .btn-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 48px;
+    }
+}

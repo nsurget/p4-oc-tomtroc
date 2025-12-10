@@ -4,28 +4,35 @@ body {
     background-color: $background-light;
     font-family: $body-font-family;
 
-    
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
     ::selection {
         color: $text;
         background-color: rgba($primary, 0.2);
     }
-    
-   
+
+
 
 }
 
-.container {
+main {
     width: 100%;
+    flex: 1;
+}
+
+.container {
     max-width: $container;
     margin: 0 auto;
 
-    @media screen and (max-width: calc( $container + 20px)) {
+    @media screen and (max-width: calc($container + 20px)) {
         margin: 0px 10px;
     }
 }
 
 .small-container {
-    width: 100%;
     max-width: $small-container;
     margin: 0 auto;
 }
@@ -33,6 +40,7 @@ body {
 a {
     color: $text;
     text-decoration: none;
+
     &:hover {
         color: $primary;
     }
@@ -45,9 +53,11 @@ header {
     .header-container {
         display: flex;
         gap: 78px;
+        padding: 0 5px;
 
         .logo {
             margin: 15px 0;
+
             img {
                 height: 50px;
                 width: auto;
@@ -60,7 +70,8 @@ header {
             justify-content: space-between;
             align-items: center;
 
-            .left-side, .right-side {
+            .left-side,
+            .right-side {
                 display: flex;
                 gap: 42px;
 

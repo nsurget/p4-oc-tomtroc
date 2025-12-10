@@ -31,26 +31,41 @@ class DiscussionController
             foreach ($discussions as $discussion) {
                 if ($discussion->getUser1Id() == $requestId || $discussion->getUser2Id() == $requestId) {
                     $active_discussion_id = $discussion->getId();
+                    $discussionManager->resetNewMessagesCount($discussion, $_SESSION['idUser']);
+                    if ($_SESSION['idUser'] == $discussion->getUser1Id()) {
+                        $discussion->setNewMessagesCountUser1(0);
+                    } else {
+                        $discussion->setNewMessagesCountUser2(0);
+                    }
                     break;
                 }
             }
 
             if ($active_discussion_id === null) {    
                 $tempDiscussion = new Discussion();
+                $tempDiscussion->setId(-1);
                 $tempDiscussion->setUser1Id($requestId);
                 $tempDiscussion->setUser2Id($_SESSION['idUser']);
-                $tempDiscussion->setNewMessagesCount(0);
+                $tempDiscussion->setNewMessagesCountUser1(0);
+                $tempDiscussion->setNewMessagesCountUser2(0);
                 $tempDiscussion->setRequestUserPicture($requestUser->getProfilPicture());
                 $tempDiscussion->setRequestUserPseudo($requestUser->getPseudo());
                 $tempDiscussion->setLastMessageContent('');
                 $tempDiscussion->setLastMessageAt(null);
                 $tempDiscussion->setLastMessageUserId(null);
                 $discussions[] = $tempDiscussion;
+                $active_discussion_id = $tempDiscussion->getId();
             }
 
         } elseif (!empty($discussions)) {
             $active_discussion_id = $discussions[0]->getId();
             $requestUser = $userManager->getUserById($discussions[0]->getUser1Id() == $_SESSION['idUser'] ? $discussions[0]->getUser2Id() : $discussions[0]->getUser1Id());
+            $discussionManager->resetNewMessagesCount($discussions[0], $_SESSION['idUser']);
+            if ($_SESSION['idUser'] == $discussions[0]->getUser1Id()) {
+                $discussions[0]->setNewMessagesCountUser1(0);
+            } else {
+                $discussions[0]->setNewMessagesCountUser2(0);
+            }
         }
 
         $messages = [];
@@ -81,12 +96,12 @@ class DiscussionController
         if ($discussion) {
             $messageManager = new MessageManager();
             $messageManager->addMessage($discussion->getId(), $_SESSION['idUser'], $messageContent);
-            $discussionManager->addOneNewMessagesCount($discussion->getId());
+            $discussionManager->addOneNewMessagesCount($discussion,$requestUserId);
         } else {
             $discussion = $discussionManager->addDiscussion($requestUserId, $_SESSION['idUser']);
             $messageManager = new MessageManager();
             $messageManager->addMessage($discussion->getId(), $_SESSION['idUser'], $messageContent);
-            $discussionManager->addOneNewMessagesCount($discussion->getId());
+            $discussionManager->addOneNewMessagesCount($discussion, $requestUserId);
         }
 
         header('Location: ?action=' . AppRoutes::SHOW_DISCUSSION . '&id=' . $requestUserId);

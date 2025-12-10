@@ -5,7 +5,7 @@ $recentBooks = $params['recentBooks'] ?? [];
 $button = $params['button'] ?? '';
 $button_url = $params['button-url'] ?? '';
 ?>
-<section class="last-books container">
+<section class="last-books small-container">
     <?php if (!empty($title)): ?>
         <h2><?= $title ?></h2>
     <?php endif; ?>
@@ -17,6 +17,8 @@ $button_url = $params['button-url'] ?? '';
         </div>
     <?php endif; ?>
     <?php if (!empty($button)): ?>
-        <a href="<?= $button_url ?>" class="button"><?= $button ?></a>
+        <div class="btn-container">
+            <a href="<?= $button_url ?>" class="btn btn-primary"><?= $button ?></a>
+        </div>
     <?php endif; ?>
 </section>

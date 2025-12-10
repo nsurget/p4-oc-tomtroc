@@ -10,7 +10,8 @@ class Discussion extends AbstractEntity
     protected int $id;
     protected ?int $user_1_id; // always lower id
     protected ?int $user_2_id; // always higher id
-    protected int $new_messages_count;
+    protected int $new_messages_count_user_1;
+    protected int $new_messages_count_user_2;
 
     // ------------------------------------------
 
@@ -46,6 +47,7 @@ class Discussion extends AbstractEntity
         }
 
         $now = new DateTime();
+        $now->setTimezone(new DateTimeZone('Europe/Paris'));
         $interval = $now->diff($this->getLastMessageAt());
         
         if ($interval->y > 0) {
@@ -151,17 +153,46 @@ class Discussion extends AbstractEntity
             $this->last_message_at = null;
             return;
         }
-        $this->last_message_at = new DateTime($last_message_at);
+        $date = new DateTime($last_message_at);
+        $date->setTimezone(new DateTimeZone('Europe/Paris'));
+        $this->last_message_at = $date;
     }
 
-    public function getNewMessagesCount(): int 
+    public function getNewMessagesCountUser1(): int 
     {
-        return $this->new_messages_count;
+        return $this->new_messages_count_user_1;
     }
 
-    public function setNewMessagesCount(int $new_messages_count): void 
+    public function setNewMessagesCountUser1(int $new_messages_count_user_1): void 
     {
-        $this->new_messages_count = $new_messages_count;
+        $this->new_messages_count_user_1 = $new_messages_count_user_1;
+    }
+
+    public function getNewMessagesCountUser2(): int 
+    {
+        return $this->new_messages_count_user_2;
+    }
+
+    public function setNewMessagesCountUser2(int $new_messages_count_user_2): void 
+    {
+        $this->new_messages_count_user_2 = $new_messages_count_user_2;
+    }
+
+    public function getNewMessagesCount($userId): int 
+    {
+        if ($userId === $this->getUser1Id()) {
+            return $this->getNewMessagesCountUser1();
+        }
+        return $this->getNewMessagesCountUser2();
+    }
+
+    public function setNewMessagesCount(int $new_messages_count, $userId): void 
+    {
+        if ($userId === $this->getUser1Id()) {
+            $this->setNewMessagesCountUser1($new_messages_count);
+            return;
+        }
+        $this->setNewMessagesCountUser2($new_messages_count);
     }
       
     public function getLastMessageUserId(): ?int 

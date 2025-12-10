@@ -17,16 +17,16 @@ Utils::getTemplatePart('text-image', [
 
 
 Utils::getTemplatePart('last-books', [
-    'title' => 'Rejoignez nos lecteurs passionnés',
+    'title' => 'Les derniers livres ajoutés',
     'recentBooks' => $recentBooks,
-    'button' => 'Découvrir',
-    'button-url' => '?action=showBooks',
+    'button' => 'Voir tous les livres',
+    'button-url' => '?action='. AppRoutes::SHOW_BOOKS,
 ]);
 
 
 Utils::getTemplatePart('faq', [
     'title' => 'Comment ça marche ?',
-    'text' => 'Échanger des livres avec TomTroc c\'est simple et amusant ! Suivez ces étapes pour commencer :',
+    'text' => 'Échanger des livres avec TomTroc c\'est simple et <br> amusant ! Suivez ces étapes pour commencer :',
     'faq' => [
         [
             'answer' => 'Inscrivez-vous gratuitement sur notre plateforme.',
@@ -42,7 +42,7 @@ Utils::getTemplatePart('faq', [
         ],
     ],
     'button' => 'Voir tous les livres',
-    'button-url' => '?action=showBooks',
+    'button-url' => '?action='. AppRoutes::SHOW_BOOKS,
 ]);
 
 
@@ -56,6 +56,7 @@ Utils::getTemplatePart('text-center', [
     'title' => 'Nos valeurs',
     'text' => 'Chez Tom Troc, nous mettons l\'accent sur le partage, la découverte et la communauté. Nos valeurs sont ancrées dans notre passion pour les livres et notre désir de créer des liens entre les lecteurs. Nous croyons en la puissance des histoires pour rassembler les gens et inspirer des conversations enrichissantes. Notre association a été fondée avec une conviction profonde : chaque livre mérite d\'être lu et partagé. Nous sommes passionnés par la création d\'une plateforme conviviale qui permet aux lecteurs de se connecter, de partager leurs découvertes littéraires et d\'échanger des livres qui attendent patiemment sur les étagères.',
     'text-legend' => 'L\'équipe Tom Troc',
+    'signature-image' => 'uploads/sign.svg'
 ]);
 
 

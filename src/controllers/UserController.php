@@ -100,6 +100,20 @@ class UserController
         $view->render("userProfile", ['user' => $user, 'books' => $books]);
     }
 
+    public function showPublicUserProfile($id)
+    {
+        $userManager = new UserManager();
+        $user = $userManager->getUserById($id);
+
+        $bookManager = new BookManager();
+        $books = $bookManager->getBooksByUser($user->getId());
+
+        $view = new View("Profil de". $user->getPseudo());
+        $view->render("userPublicProfile", ['user' => $user, 'books' => $books]);
+
+    }
+
+
     public function editUser()
     {
         Utils::checkUserConnected();
@@ -122,8 +136,9 @@ class UserController
             $user->setPassword($password);
         }
         $_SESSION['user'] = $user;      
-        Utils::redirect(AppRoutes::USER_PROFILE);
+        Utils::redirect(AppRoutes::USER_PROFIL);
     }
+
 
     public function editUserPicture() {
         Utils::checkUserConnected();
@@ -143,7 +158,7 @@ class UserController
 
 
 
-        Utils::redirect(AppRoutes::USER_PROFILE);
+        Utils::redirect(AppRoutes::USER_PROFIL);
     }
 
 }

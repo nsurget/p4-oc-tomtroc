@@ -1,0 +1,261 @@
+@use '../variables' as *;
+
+section.user-profil {
+    margin-bottom: 100px;
+
+    h1 {
+        margin-top: 90px;
+        margin-bottom: 48px;
+    }
+
+
+    &.public-profil {
+        display: flex;
+        gap: 33px;
+        margin-top: 103px;
+
+        .user-profil-container {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .user-books {
+            flex: 2.5;
+            height: 100%;
+        }
+    }
+
+
+    .user-profil-container {
+        display: flex;
+        gap: 33px;
+        margin-bottom: 33px;
+
+        .user-profil {
+            flex: 1;
+            background-color: $white;
+            padding: 36px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .user-picture {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    width: 150px;
+                    height: 150px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+
+                .edit-picture-button {
+                    margin-top: 5px;
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    color: $gris-text;
+                    text-align: center;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: normal;
+                    text-decoration-line: underline;
+                    text-decoration-style: solid;
+                    text-decoration-skip-ink: none;
+                    text-decoration-thickness: auto;
+                    text-underline-offset: auto;
+                    text-underline-position: from-font;
+                }
+            }
+
+
+
+            .sep {
+                width: 242px;
+                height: 1px;
+                background-color: $border;
+                margin: 36px 0;
+            }
+
+            .user-info {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                .user-pseudo {
+                    color: $gris-fonc;
+                    text-align: center;
+                    font-family: $title-font-family;
+                    font-size: 24px;
+                    font-weight: 400;
+                    line-height: normal;
+                    margin-bottom: 5px;
+                }
+
+                .user-member-since {
+                    color: $gris-text;
+                    text-align: center;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: normal;
+                    margin-bottom: 10px;
+
+
+                }
+
+                .user-library {
+                    color: $gris-fonc;
+                    text-align: center;
+                    font-size: 8px;
+                    font-weight: 600;
+                    line-height: normal;
+                    letter-spacing: 0.64px;
+                }
+
+                .user-library-count {
+                    color: $gris-fonc;
+                    text-align: center;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: normal;
+                    margin-top: 5px;
+                    margin-bottom: 30px;
+                }
+
+            }
+        }
+
+
+
+
+
+        .user-form {
+            flex: 1;
+            background-color: $white;
+            padding: 36px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            form {
+                display: flex;
+                flex-direction: column;
+                width: 322px;
+
+                p {
+                    margin-bottom: 25px;
+                }
+            }
+
+        }
+    }
+
+    .user-books {
+        background-color: $white;
+        padding: 36px 0 0;
+        border-radius: 20px;
+
+        thead {
+
+            th {
+                color: $gris-fonc;
+                font-size: 10px;
+                font-weight: 600;
+                line-height: normal;
+                letter-spacing: 0.64px;
+                text-align: start;
+
+                &:first-child {
+                    padding-left: 20px;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    vertical-align: middle;
+
+                    padding-right: 30px;
+
+                    .inner {
+                        padding: 18px 0;
+                        display: inline-block;
+                        color: $gris-fonc;
+                        font-size: 12px;
+                        font-weight: 400;
+                        line-height: normal;
+                        max-width: 280px;
+
+                        img {
+                            max-width: 100%;
+                            height: auto;
+                            display: block;
+                        }
+
+                        .color-red {
+                            border-radius: 29px;
+                            display: inline-flex;
+                            padding: 3.6px 13.3px;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 7.3px;
+                            background: $warning;
+                            color: $white;
+                        }
+
+                        .color-green {
+                            border-radius: 29px;
+                            display: inline-flex;
+                            padding: 3.6px 13.3px;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 7.3px;
+                            background: $primary-light;
+                            color: $white;
+                        }
+
+                        .edit-book {
+                            color: $gris-fonc;
+                            font-size: 12px;
+                            font-weight: 400;
+                            line-height: normal;
+                            text-decoration-line: underline;
+                            text-decoration-style: solid;
+                            text-decoration-skip-ink: none;
+                            text-decoration-thickness: auto;
+                            text-underline-offset: auto;
+                            text-underline-position: from-font;
+                        }
+
+
+                        .delete-book {
+                            margin-left: 10px;
+                            color: $warning;
+                            font-size: 12px;
+                            font-weight: 400;
+                            line-height: normal;
+                            text-decoration-line: underline;
+                            text-decoration-style: solid;
+                            text-decoration-skip-ink: none;
+                            text-decoration-thickness: auto;
+                            text-underline-offset: auto;
+                            text-underline-position: from-font;
+                        }
+                    }
+
+                    &:first-child {
+                        padding-left: 20px;
+                    }
+                }
+            }
+        }
+    }
+}

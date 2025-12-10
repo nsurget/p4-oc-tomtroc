@@ -57,9 +57,14 @@ try {
             }
             break;
 
-        case AppRoutes::USER_PROFILE:
+        case AppRoutes::USER_PROFIL:
             $userController = new UserController();
-            $userController->showUserProfile();
+            $id = Utils::request('id');
+            if (empty($id) || !empty($_SESSION['idUser']) && $_SESSION['idUser'] == $id) {
+                $userController->showUserProfile();
+            } else {
+                $userController->showPublicUserProfile($id);
+            }
             break;
 
         case AppRoutes::USER_EDIT:

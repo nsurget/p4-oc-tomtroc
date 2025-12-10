@@ -1,6 +1,6 @@
 @use '../variables' as *;
 
-button.btn {
+button.btn,a.btn {
     display: inline-flex;
     padding: 22px 38px;
     justify-content: center;
@@ -10,12 +10,13 @@ button.btn {
     gap: 10px;
     transition: all 0.1s ease;
     color: $white;
-text-align: center;
-font-family: $body-font-family;
-font-size: 16px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
+    text-align: center;
+    font-family: $body-font-family;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    width: fit-content;
 
     &.btn-primary {
         background-color: $primary;
@@ -26,11 +27,11 @@ line-height: normal;
         }
     }
 
-    
+
 
     &.btn-secondary {
         border: 1px solid $primary;
-        background-color: $white;
+        background-color: $gris-clair;
         color: $primary;
 
         &:hover {

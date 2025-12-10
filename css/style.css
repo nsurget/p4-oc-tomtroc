@@ -102,7 +102,7 @@ h6 {
   line-height: normal;
 }
 
-button.btn {
+button.btn, a.btn {
   display: inline-flex;
   padding: 22px 38px;
   justify-content: center;
@@ -118,20 +118,21 @@ button.btn {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  width: fit-content;
 }
-button.btn.btn-primary {
+button.btn.btn-primary, a.btn.btn-primary {
   background-color: #00AC66;
   color: #fff;
 }
-button.btn.btn-primary:hover {
+button.btn.btn-primary:hover, a.btn.btn-primary:hover {
   background-color: #006D41;
 }
-button.btn.btn-secondary {
+button.btn.btn-secondary, a.btn.btn-secondary {
   border: 1px solid #00AC66;
-  background-color: #fff;
+  background-color: #F5F3EF;
   color: #00AC66;
 }
-button.btn.btn-secondary:hover {
+button.btn.btn-secondary:hover, a.btn.btn-secondary:hover {
   color: #006D41;
   border-color: #006D41;
 }
@@ -165,7 +166,8 @@ input:focus {
   flex-direction: column;
   background-color: #fff;
   border-radius: 0 0 10px 10px;
-  max-width: 200px;
+  width: 200px;
+  height: 100%;
 }
 .book-card img {
   aspect-ratio: 1;
@@ -188,7 +190,7 @@ input:focus {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin: 8px 14px;
+  margin: 8px 14px 22px;
 }
 .book-card .seller {
   color: var(--Gris-texte, #A6A6A6);
@@ -197,20 +199,28 @@ input:focus {
   font-style: italic;
   font-weight: 400;
   line-height: normal;
-  margin: 22px 14px;
+  margin: auto 14px 22px;
 }
 
 body {
   background-color: #FAF9F7;
   font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 body ::selection {
   color: #000;
   background-color: rgba(0, 172, 102, 0.2);
 }
 
-.container {
+main {
   width: 100%;
+  flex: 1;
+}
+
+.container {
   max-width: 1140px;
   margin: 0 auto;
 }
@@ -221,7 +231,6 @@ body ::selection {
 }
 
 .small-container {
-  width: 100%;
   max-width: 840px;
   margin: 0 auto;
 }
@@ -240,6 +249,7 @@ header {
 header .header-container {
   display: flex;
   gap: 78px;
+  padding: 0 5px;
 }
 header .header-container .logo {
   margin: 15px 0;
@@ -254,11 +264,13 @@ header .header-container nav {
   justify-content: space-between;
   align-items: center;
 }
-header .header-container nav .left-side, header .header-container nav .right-side {
+header .header-container nav .left-side,
+header .header-container nav .right-side {
   display: flex;
   gap: 42px;
 }
-header .header-container nav .left-side a, header .header-container nav .right-side a {
+header .header-container nav .left-side a,
+header .header-container nav .right-side a {
   text-decoration: none;
   color: #000;
   font-size: 14px;
@@ -266,10 +278,12 @@ header .header-container nav .left-side a, header .header-container nav .right-s
   line-height: normal;
   letter-spacing: 0.28px;
 }
-header .header-container nav .left-side a:hover, header .header-container nav .right-side a:hover {
+header .header-container nav .left-side a:hover,
+header .header-container nav .right-side a:hover {
   color: #00AC66;
 }
-header .header-container nav .left-side a.active, header .header-container nav .right-side a.active {
+header .header-container nav .left-side a.active,
+header .header-container nav .right-side a.active {
   color: #292929;
   font-weight: 600;
   cursor: default;
@@ -370,17 +384,10 @@ section.register-login-form .right-side img {
   align-items: center;
 }
 
-section.user-profile .user-picture img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
 section.discussion {
   display: flex;
   gap: 35px;
-  height: calc(100vh - 150px);
+  height: 100%;
 }
 section.discussion::after {
   content: "";
@@ -396,6 +403,7 @@ section.discussion .left-side {
   flex: 1;
   max-width: 308px;
   background-color: #FAF9F7;
+  overflow-y: auto;
 }
 section.discussion .left-side a {
   text-decoration: none;
@@ -465,23 +473,23 @@ section.discussion .left-side .discussion-container .discussion-item .info .bott
 section.discussion .right-side {
   flex: 2;
 }
-section.discussion .right-side .user-info {
+section.discussion .right-side .user-info a {
   display: flex;
   gap: 10px;
-  padding: 20px 34px;
+  padding: 20px 0px;
 }
-section.discussion .right-side .user-info .picture {
+section.discussion .right-side .user-info a .picture {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-section.discussion .right-side .user-info .picture img {
+section.discussion .right-side .user-info a .picture img {
   width: 46px;
   height: 46px;
   border-radius: 50%;
   overflow: hidden;
 }
-section.discussion .right-side .user-info .info {
+section.discussion .right-side .user-info a .info {
   flex: 1;
   color: #292929;
   font-family: "Inter", sans-serif;
@@ -495,6 +503,7 @@ section.discussion .right-side .user-info .info {
 section.discussion .right-side .messages-container {
   overflow-y: auto;
   height: calc(100vh - 350px);
+  min-height: 350px;
 }
 section.discussion .right-side .messages-container .messages {
   display: flex;
@@ -540,9 +549,515 @@ section.discussion .right-side .messages-container .messages .message .content {
 }
 section.discussion .right-side .messages-container .messages .message.right {
   align-self: flex-end;
+  margin-right: 5px;
 }
 section.discussion .right-side .messages-container .messages .message.right .content {
   background-color: #EDF2F6;
+}
+section.discussion .right-side .messages-container .messages .message:last-child {
+  margin-bottom: 40px;
+}
+section.discussion .right-side form {
+  display: flex;
+  gap: 21px;
+  width: 100%;
+  margin-bottom: 66px;
+}
+section.discussion .right-side form input {
+  margin: 0;
+  flex: 1;
+  max-width: unset;
+}
+section.discussion .right-side form .btn {
+  padding: 15px 38px;
+}
+
+section.books-archive {
+  margin: 130px 0 80px;
+}
+section.books-archive .title-search {
+  display: flex;
+  justify-content: space-between;
+}
+section.books-archive .title-search .search-form {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section.books-archive .title-search .search-form button {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  border: none;
+  background-color: transparent;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section.books-archive .title-search .search-form input {
+  padding: 10px 10px 10px 40px;
+  margin-bottom: 0;
+  display: block;
+  min-width: 310px;
+}
+section.books-archive .books-list {
+  display: flex;
+  gap: 38px;
+  flex-wrap: wrap;
+  margin-top: 70px;
+}
+
+section.single-book .single-book-container {
+  display: flex;
+  gap: 38px;
+}
+section.single-book .single-book-container .book-picture {
+  flex: 1;
+}
+section.single-book .single-book-container .book-info {
+  margin-top: 60px;
+  flex: 1;
+}
+section.single-book .single-book-container .book-info h2 {
+  margin-bottom: 16px;
+}
+section.single-book .single-book-container .book-info .author {
+  color: #A6A6A6;
+  font-size: 16px;
+  font-weight: 400;
+}
+section.single-book .single-book-container .book-info .separator {
+  margin: 32px 0;
+  width: 27px;
+  height: 1px;
+  background-color: #A6A6A6;
+}
+section.single-book .single-book-container .book-info .label {
+  color: var(--Gris-fonc, #292929);
+  font-size: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+section.single-book .single-book-container .book-info .description {
+  margin-top: 16px;
+  margin-bottom: 32px;
+}
+section.single-book .single-book-container .book-info .user {
+  margin-top: 12px;
+  margin-bottom: 80px;
+}
+section.single-book .single-book-container .book-info .user a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: fit-content;
+  background-color: #fff;
+  padding: 5px 12px 5px 5px;
+  border-radius: 115px;
+}
+section.single-book .single-book-container .book-info .user a div {
+  height: 100%;
+  aspect-ratio: 1;
+  position: relative;
+}
+section.single-book .single-book-container .book-info .user a div img {
+  height: 40px;
+  width: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 100%;
+}
+section.single-book .single-book-container .book-info .btn {
+  margin-bottom: 80px;
+}
+
+section.user-profil {
+  margin-bottom: 100px;
+}
+section.user-profil h1 {
+  margin-top: 90px;
+  margin-bottom: 48px;
+}
+section.user-profil.public-profil {
+  display: flex;
+  gap: 33px;
+  margin-top: 103px;
+}
+section.user-profil.public-profil .user-profil-container {
+  flex: 1;
+  margin-bottom: 0;
+}
+section.user-profil.public-profil .user-books {
+  flex: 2.5;
+  height: 100%;
+}
+section.user-profil .user-profil-container {
+  display: flex;
+  gap: 33px;
+  margin-bottom: 33px;
+}
+section.user-profil .user-profil-container .user-profil {
+  flex: 1;
+  background-color: #fff;
+  padding: 36px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+section.user-profil .user-profil-container .user-profil .user-picture {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+section.user-profil .user-profil-container .user-profil .user-picture img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+section.user-profil .user-profil-container .user-profil .user-picture .edit-picture-button {
+  margin-top: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #A6A6A6;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+}
+section.user-profil .user-profil-container .user-profil .sep {
+  width: 242px;
+  height: 1px;
+  background-color: #F0F0F0;
+  margin: 36px 0;
+}
+section.user-profil .user-profil-container .user-profil .user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+section.user-profil .user-profil-container .user-profil .user-info .user-pseudo {
+  color: #292929;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 5px;
+}
+section.user-profil .user-profil-container .user-profil .user-info .user-member-since {
+  color: #A6A6A6;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 10px;
+}
+section.user-profil .user-profil-container .user-profil .user-info .user-library {
+  color: #292929;
+  text-align: center;
+  font-size: 8px;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.64px;
+}
+section.user-profil .user-profil-container .user-profil .user-info .user-library-count {
+  color: #292929;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 5px;
+  margin-bottom: 30px;
+}
+section.user-profil .user-profil-container .user-form {
+  flex: 1;
+  background-color: #fff;
+  padding: 36px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section.user-profil .user-profil-container .user-form form {
+  display: flex;
+  flex-direction: column;
+  width: 322px;
+}
+section.user-profil .user-profil-container .user-form form p {
+  margin-bottom: 25px;
+}
+section.user-profil .user-books {
+  background-color: #fff;
+  padding: 36px 0 0;
+  border-radius: 20px;
+}
+section.user-profil .user-books thead th {
+  color: #292929;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.64px;
+  text-align: start;
+}
+section.user-profil .user-books thead th:first-child {
+  padding-left: 20px;
+}
+section.user-profil .user-books tbody tr td {
+  vertical-align: middle;
+  padding-right: 30px;
+}
+section.user-profil .user-books tbody tr td .inner {
+  padding: 18px 0;
+  display: inline-block;
+  color: #292929;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  max-width: 280px;
+}
+section.user-profil .user-books tbody tr td .inner img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+section.user-profil .user-books tbody tr td .inner .color-red {
+  border-radius: 29px;
+  display: inline-flex;
+  padding: 3.6px 13.3px;
+  justify-content: center;
+  align-items: center;
+  gap: 7.3px;
+  background: #C56D6D;
+  color: #fff;
+}
+section.user-profil .user-books tbody tr td .inner .color-green {
+  border-radius: 29px;
+  display: inline-flex;
+  padding: 3.6px 13.3px;
+  justify-content: center;
+  align-items: center;
+  gap: 7.3px;
+  background: #6DC5A1;
+  color: #fff;
+}
+section.user-profil .user-books tbody tr td .inner .edit-book {
+  color: #292929;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+}
+section.user-profil .user-books tbody tr td .inner .delete-book {
+  margin-left: 10px;
+  color: #C56D6D;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+}
+section.user-profil .user-books tbody tr td:first-child {
+  padding-left: 20px;
+}
+
+div.book-form .return {
+  margin-top: 30px;
+  cursor: pointer;
+  color: #A6A6A6;
+  font-size: 14px;
+  font-weight: 400;
+}
+div.book-form h2 {
+  margin: 30px 0;
+}
+div.book-form form {
+  display: flex;
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+section.text-image {
+  background-color: #F5F3EF;
+  padding: 80px 0 100px;
+}
+section.text-image .text-image__container {
+  display: flex;
+  gap: 30px;
+}
+section.text-image .text-image__container .text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+section.text-image .text-image__container .text .text-content {
+  margin-top: 16px;
+  margin-bottom: 40px;
+}
+section.text-image .text-image__container .image {
+  flex: 1;
+}
+section.text-image .text-image__container .image img {
+  max-height: 540px;
+  width: auto;
+}
+section.text-image .text-image__container .image p {
+  color: #A6A6A6;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: normal;
+  text-align: end;
+  margin-top: 11px;
+}
+@media screen and (max-width: 768px) {
+  section.text-image .text-image__container {
+    flex-direction: column-reverse;
+  }
+  section.text-image {
+    padding: 0 0 20px;
+  }
+}
+
+section.text-center {
+  background-color: #F5F3EF;
+  padding: 80px 0 100px;
+}
+section.text-center .text-center__container {
+  max-width: 530px;
+  position: relative;
+}
+section.text-center .text-center__container .text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 50px;
+}
+section.text-center .text-center__container .text .text-content {
+  margin-top: 16px;
+  margin-bottom: 30px;
+  color: #292929;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+section.text-center .text-center__container .signature {
+  color: #A6A6A6;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: normal;
+  min-height: 100px;
+  padding: 0 100px 0 0;
+}
+section.text-center .text-center__container .signature picture {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+}
+@media screen and (max-width: 768px) {
+  section.text-center .text-center__container {
+    flex-direction: column-reverse;
+  }
+  section.text-center {
+    padding: 0 0 20px;
+  }
+}
+
+section.last-books {
+  margin-top: 80px;
+  margin-bottom: 64px;
+}
+section.last-books h2 {
+  margin-bottom: 80px;
+  text-align: center;
+}
+section.last-books .books {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 38px;
+}
+section.last-books .btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+section.faq {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background-color: #F5F3EF;
+}
+section.faq .faq__container h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+section.faq .faq__container .faq__text {
+  text-align: center;
+  margin: 24px 0 40px;
+}
+section.faq .faq__container .faq-list {
+  display: flex;
+  gap: 36px;
+  margin: 40px 48px;
+}
+section.faq .faq__container .faq-list .faq-item {
+  flex: 1;
+}
+section.faq .faq__container .faq-list .faq-item p {
+  text-align: center;
+  padding: 24px;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--Gris-fonc, #292929);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+section.faq .faq__container .btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+section.image-full-width img {
+  width: 100%;
+  max-height: 90vh;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -123,6 +123,16 @@ class Book extends AbstractEntity
         return $this->availability;
     }
 
+    
+    public function displayAvailability(): string
+    {
+        if ($this->availability == "available") {
+            return '<span class="color-green">Disponible</span>';
+        }
+        return '<span class="color-red">Indisponible</span>';
+    }
+    
+
     /**
      * Setter pour la disponibilité. 
      * @param string $availability

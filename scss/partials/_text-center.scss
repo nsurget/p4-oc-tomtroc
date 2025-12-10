@@ -1,0 +1,62 @@
+@use '../variables' as *;
+
+section.text-center {
+    background-color: $gris-clair;
+    padding: 80px 0 100px;
+
+
+    .text-center__container {
+        max-width: 530px;
+
+        position: relative;
+
+        .text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 50px;
+
+            .text-content {
+                margin-top: 16px;
+                margin-bottom: 30px;
+                color: $gris-fonc;
+                font-family: $body-font-family;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 300;
+                line-height: normal;
+            }
+        }
+
+        .signature {
+            color: $gris-text;
+            font-family: $body-font-family;
+            font-size: 12px;
+            font-style: italic;
+            font-weight: 400;
+            line-height: normal;
+            min-height: 100px;
+            padding: 0 100px 0 0;
+
+            picture {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+    }
+
+    @media screen and (max-width: 768px) {
+        .text-center__container {
+            flex-direction: column-reverse;
+
+            .text {}
+        }
+
+        padding: 0 0 20px;
+    }
+}

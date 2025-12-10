@@ -17,8 +17,8 @@
                                 </div>
                                 <div class="bottom">
                                     <p><?= $discussion->getLastMessageContent() ?></p>
-                                    <?php if ($discussion->getNewMessagesCount() > 0): ?>
-                                        <p><?= $discussion->getNewMessagesCount() ?></p>
+                                    <?php if ($discussion->getNewMessagesCount($_SESSION['idUser']) > 0): ?>
+                                        <p><?= $discussion->getNewMessagesCount($_SESSION['idUser']) ?></p>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -34,12 +34,14 @@
     <div class="right-side">
         <?php if (!empty($request_user)): ?>
             <div class="user-info">
+                <a href="?action=<?= AppRoutes::USER_PROFIL ?>&id=<?= $request_user->getId() ?>">
                 <div class="picture">
                     <?= $request_user->displayImage() ?>
                 </div>
                 <div class="info">
                     <p><?= $request_user->getPseudo() ?></p>
                 </div>
+                </a>
             </div>
         <?php endif; ?>
 
@@ -74,13 +76,15 @@
                 </div>
             </div>
         <?php else: ?>
-            <p>Aucun message</p>
+            <div class="messages-container">
+                <p class="empty">Aucun message</p>
+            </div>
         <?php endif; ?>
 
         <?php if (!empty($request_user)): ?>
         <form action="?action=<?= AppRoutes::SEND_MESSAGE ?>&id=<?= $request_user->getId() ?>" method="post">
-            <input type="text" name="content" placeholder="Message">
-            <button type="submit">Envoyer</button>
+            <input type="text" name="content" placeholder="Tapez votre message ici">
+            <button type="submit" class="btn btn-primary">Envoyer</button>
         </form>
         <?php endif; ?>
     </div>

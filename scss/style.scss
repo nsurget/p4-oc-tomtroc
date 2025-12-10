@@ -9,8 +9,19 @@
 
 @use 'pages/register-login-form';
 @use 'pages/error';
-@use 'pages/user-profile';
 @use 'pages/discussion';
+@use 'pages/books';
+@use 'pages/single-book';
+@use 'pages/user-profil';
+@use 'pages/edit-book-form';
+
+
+@use 'partials/text-image';
+@use 'partials/text-center';
+@use 'partials/last-books';
+@use 'partials/faq';
+@use 'partials/image-full-width';
+
 
 
 

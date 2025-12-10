@@ -42,7 +42,7 @@ class AuthorManager extends AbstractEntityManager
 
         $author = $result->fetch();
 
-        return $author['id'];
+        return $author['id'] ?? 0;
     }
 
     public function addAuthor(string $name): int

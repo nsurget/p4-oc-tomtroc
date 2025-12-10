@@ -26,8 +26,9 @@ class Message extends AbstractEntity
         if ($this->created_at->format('Y-m-d') === date('Y-m-d')) {
             return $this->created_at->format('H:i');
         }
-
-        if ($this->created_at->format('Y-m-d') === date('Y-m-d', strtotime('-1 day'))) {
+        $plus1Year = new DateTime('+ 1 year');
+        $plus1Year->setTimezone(new DateTimeZone('Europe/Paris'));
+        if ($this->created_at < $plus1Year) {
             return $this->created_at->format('H:i d.m');
         }
 
@@ -84,7 +85,7 @@ class Message extends AbstractEntity
     }
     
     public function setCreatedAt(?string $created_at): void {
-        $this->created_at = DateTime::createFromFormat('Y-m-d H:i:s', $created_at);
+        $this->created_at = DateTime::createFromFormat('Y-m-d H:i:s', $created_at)?->setTimezone(new DateTimeZone('Europe/Paris'));
     }
 }   
     
