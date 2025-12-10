@@ -22,14 +22,12 @@ $authors = $params['authors'] ?? [];
         <div class="book-image">
             <?php if ($book): ?>
                 <?= $book->displayImage() ?>
-                <p>Modifier l'image</p>
+                <p class="edit-picture-button">Modifier l'image</p>
             <?php else: ?>
                 <img src="/uploads/default.png" alt="placeholder">
-                <p>Ajouter une image</p>
+                <p class="edit-picture-button">Ajouter une image</p>
             <?php endif; ?>
-
-
-            <div class="edit-form">
+            <div class="edit-picture-form hidden">
                 <label>Uploader une image</label>
                 <input type="file" name="book-picture">
                 <p>Format accepté : .png, .jpg, .jpeg, .gif</p>
@@ -47,8 +45,6 @@ $authors = $params['authors'] ?? [];
             <input type="text" list="authors_list" id="author_name" name="author_name"
                 placeholder="Trouver ou ajouter un auteur..."
                 value="<?= !empty($book) && $book->getAuthorName() ? $book->getAuthorName() : '' ?>">
-
-
             <datalist id="authors_list">
                 <?php foreach ($authors as $author): ?>
                     <option value="<?= $author->getName() ?>" data-id="<?= $author->getId() ?>">
@@ -64,7 +60,7 @@ $authors = $params['authors'] ?? [];
                     </option>
                 <?php endforeach; ?>
             </select>
-            <button type="submit">Valider</button>
+            <button type="submit" class="btn btn-primary">Valider</button>
         </div>
     </form>
 </div>

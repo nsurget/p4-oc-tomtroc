@@ -85,7 +85,7 @@ class UserController
         Utils::redirect(AppRoutes::HOME);
     }
 
-    public function showUserProfile()
+    public function showUserProfil()
     {
         Utils::checkUserConnected();
 
@@ -97,10 +97,10 @@ class UserController
 
 
         $view = new View("Profil");
-        $view->render("userProfile", ['user' => $user, 'books' => $books]);
+        $view->render("userProfil", ['user' => $user, 'books' => $books]);
     }
 
-    public function showPublicUserProfile($id)
+    public function showPublicUserProfil($id)
     {
         $userManager = new UserManager();
         $user = $userManager->getUserById($id);
@@ -109,7 +109,7 @@ class UserController
         $books = $bookManager->getBooksByUser($user->getId());
 
         $view = new View("Profil de". $user->getPseudo());
-        $view->render("userPublicProfile", ['user' => $user, 'books' => $books]);
+        $view->render("userPublicProfil", ['user' => $user, 'books' => $books]);
 
     }
 

@@ -1,6 +1,6 @@
 <?php
 /*
-    Template for user profile for logged in users.
+    Template for user profil for logged in users.
 */
 ?>
 
@@ -11,7 +11,7 @@
             <div class="user-picture">
                 <?= $user->displayImage() ?>
                 <button class="edit-picture-button">modifier</button>
-                <div class="edit-picture-form" style="display: none;">
+                <div class="edit-picture-form hidden">
                     <form action="?action=<?= AppRoutes::USER_EDIT_PICTURE ?>" method="post"
                         enctype="multipart/form-data">
                         <input type="hidden" name="id" value="<?= $user->getId() ?>">

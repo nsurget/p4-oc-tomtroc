@@ -30,7 +30,7 @@ class Utils {
      */
     public static function redirect(string $action, array $params = [], string $fragment = "") : void
     {
-        $url = "index.php?action=$action";
+        $url = "/index.php?action=$action";
         foreach ($params as $paramName => $paramValue) {
             $url .= "&$paramName=$paramValue";
         }

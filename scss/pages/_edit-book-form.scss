@@ -16,6 +16,60 @@ div.book-form {
     form {
         display: flex;
         background-color: $white;
-        border-radius: 20px;   
+        border-radius: 20px;
+
+        .book-image {
+            flex: 1.3;
+            margin: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+
+            img {
+                width: 100%;
+            }
+
+            .edit-picture-button {
+                margin-top: 15px;
+                color: $gris-fonc;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                text-decoration-line: underline;
+                text-decoration-style: solid;
+                text-decoration-skip-ink: none;
+                text-decoration-thickness: auto;
+                text-underline-offset: auto;
+                text-underline-position: from-font;
+                cursor: pointer;
+                margin-bottom: 15px;
+            }
+
+            .hidden {
+                display: none;
+            }
+        }
+
+        .book-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin: 50px;
+
+            input,
+            select,
+            textarea {
+                background-color: $message-color;
+                width: 481px;
+                max-width: 481px;
+                min-width: 481px;
+                
+            }
+
+            textarea {
+                height: 300px;
+            }
+        }
     }
 }

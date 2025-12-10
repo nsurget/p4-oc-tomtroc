@@ -71,6 +71,10 @@ section.user-profil {
                     text-underline-offset: auto;
                     text-underline-position: from-font;
                 }
+
+                .edit-picture-form.hidden {
+                    display: none;
+                }
             }
 
 
@@ -161,6 +165,11 @@ section.user-profil {
         background-color: $white;
         padding: 36px 0 0;
         border-radius: 20px;
+        overflow: hidden;
+
+        table {
+            width: 100%;
+        }
 
         thead {
 
@@ -186,13 +195,26 @@ section.user-profil {
                     padding-right: 30px;
 
                     .inner {
-                        padding: 18px 0;
+                        margin: 18px 0;
                         display: inline-block;
                         color: $gris-fonc;
                         font-size: 12px;
                         font-weight: 400;
                         line-height: normal;
-                        max-width: 280px;
+                        max-width: 260px;
+                       
+
+                        display: -webkit-box;
+                        /* Required for line-clamp */
+                        -webkit-line-clamp: 4;
+                        /* Number of lines to show (3 or 4) */
+                        -webkit-box-orient: vertical;
+                        /* Required for line-clamp */
+                        overflow: hidden;
+                        /* Hide the excess text */
+                        text-overflow: ellipsis;
+
+
 
                         img {
                             max-width: 100%;
@@ -254,6 +276,10 @@ section.user-profil {
                     &:first-child {
                         padding-left: 20px;
                     }
+                }
+
+                &:nth-child(2n) {
+                    background-color: $message-color;
                 }
             }
         }

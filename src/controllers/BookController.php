@@ -74,13 +74,21 @@ class BookController
         Utils::checkUserConnected();
 
         $user_id = $_SESSION['idUser'];
-        var_dump($_POST);
         $author_name = Utils::request('author_name');
         $authorManager = new AuthorManager();
         $author_id = $authorManager->getAuthorIdByName($author_name);
-        if ($author_id === null) {
+        
+        if ($author_id == 0) {
             $author_id = $authorManager->addAuthor($author_name);
         }
+
+        $bookUrl = Utils::request("book-url");
+        if (empty($profilUrl)) {
+            $bookPicture = $_FILES['book-picture'];
+            $bookUrl = Utils::uploadFile($bookPicture);
+        }
+
+        
         
         
         $id = Utils::request('id');
@@ -96,11 +104,10 @@ class BookController
         $book->setUserId($user_id);
         $book->setDescription($description);
         $book->setAvailability($availability);
+        $book->setPicture($bookUrl);
 
         
         $id = $bookManager->saveBook($book);
-
-
         Utils::redirect(AppRoutes::SHOW_SINGLE_BOOK , ['id' => $id]);
     }
 }

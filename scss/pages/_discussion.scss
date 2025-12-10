@@ -4,6 +4,7 @@ section.discussion {
     display: flex;
     gap: 35px;
     height: 100%;
+
     &::after {
         content: "";
         position: absolute;
@@ -100,6 +101,14 @@ section.discussion {
                 }
             }
         }
+
+        .empty {
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            opacity: 0.3;
+            min-height: calc(100vh - 250px);  
+        }
     }
 
     .right-side {
@@ -152,10 +161,7 @@ section.discussion {
                 .message {
                     display: flex;
                     flex-direction: column;
-
                     
-                    
-
                     .top {
                         display: flex;
                         gap: 10px;

@@ -1,5 +1,3 @@
-
-
 @use '../variables' as *;
 
 label {
@@ -17,6 +15,41 @@ input {
     background: $white;
     max-width: 322px;
     padding: 15px 10px;
+
+    &:focus {
+        outline-color: $primary;
+    }
+
+    @media screen and (max-width: 768px) {
+        max-width: 100%;
+    }
+}
+
+select {
+    margin-bottom: 32px;
+    border-radius: 6px;
+    border: 1px solid $border;
+    background: $white;
+    padding: 15px 10px;
+
+    &:focus {
+        outline-color: $primary;
+    }
+
+    @media screen and (max-width: 768px) {
+        max-width: 100%;
+    }
+}
+
+textarea {
+    margin-bottom: 32px;
+    border-radius: 6px;
+    border: 1px solid $border;
+    background: $white;
+    padding: 15px 10px;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: $body-font-family;
 
     &:focus {
         outline-color: $primary;

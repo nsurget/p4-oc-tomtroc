@@ -43,4 +43,9 @@ final class AppRoutes
     // --- Policy & Mentions ---
     public const POLICY = 'policy';
     public const MENTIONS = 'mentions';
+
+    // --- 404 ---
+
+    public const EMPTY = '404';
+
 }

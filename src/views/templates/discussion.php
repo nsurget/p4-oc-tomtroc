@@ -26,7 +26,7 @@
                     </a>
                 <?php endforeach; ?>
             <?php else: ?>
-                <p>Aucune discussion</p>
+                <p class="empty">Aucune discussion</p>
             <?php endif; ?>
         </div>
 
@@ -74,10 +74,6 @@
                         <?php endif; ?>
                     <?php endforeach; ?>
                 </div>
-            </div>
-        <?php else: ?>
-            <div class="messages-container">
-                <p class="empty">Aucun message</p>
             </div>
         <?php endif; ?>
 

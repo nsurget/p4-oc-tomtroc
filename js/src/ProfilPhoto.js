@@ -8,7 +8,7 @@ export default class ProfilPhoto {
         let editPictureForm = document.querySelector('.edit-picture-form');
 
         editPictureButton.addEventListener('click', () => {
-            editPictureForm.style.display = 'block';
+            editPictureForm.classList.toggle('hidden');
         });
 
         let profilPicture = document.querySelector('#profil-picture');

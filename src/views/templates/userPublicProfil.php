@@ -1,6 +1,6 @@
 <?php
 /*
-    Template for user profile for logged in users.
+    Template for user profil for logged in users.
 */
 ?>
 

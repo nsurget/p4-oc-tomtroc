@@ -128,21 +128,27 @@ class BookManager extends AbstractEntityManager
 
     public function saveBook(Book $book): int
     {
-        
-        if ($book->getId() == null) {
-            $sql = "INSERT INTO books (title, author_id, user_id, description, availability) VALUES (:title, :author_id, :user_id, :description, :availability);";
-        } else {
-            $sql = "UPDATE books SET title = :title, author_id = :author_id, user_id = :user_id, description = :description, availability = :availability WHERE id = :id;";
-        }
-
-        $this->db->query($sql, [
+        $params = [
             'title' => $book->getTitle(),
             'author_id' => $book->getAuthorId(),
             'user_id' => $book->getUserId(),
             'description' => $book->getDescription(),
             'availability' => $book->getAvailability(),
-            'id' => $book->getId()
-        ]);
+            
+        ];
+
+        if ($book->getId() > 0) {
+            $params['id'] = $book->getId();
+            $sql = "UPDATE books SET title = :title, author_id = :author_id, user_id = :user_id, description = :description, availability = :availability WHERE id = :id;";
+        } else {
+            $sql = "INSERT INTO books (title, author_id, user_id, description, availability) VALUES (:title, :author_id, :user_id, :description, :availability);";
+        }
+        
+                   
+
+
+        $this->db->query($sql, $params);
+        
 
         $book_id = $this->db->lastInsertId();
         return $book_id;
