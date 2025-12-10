@@ -18,7 +18,7 @@ git clone [https://github.com/nsurget/p4-oc-tomtroc.git](https://github.com/nsur
 ```
 
 ### 2. Base de données
-Un fichier d'export SQL est disponible à la racine du projet (ex: `database.sql`).
+Un fichier d'export SQL est disponible à la racine du projet (ex: `p4-nsurget-tomtroc.sql`).
 
 1.  Créez une base de données nommée `p4-nsurget-tomtroc` (ou adaptez le nom dans le fichier de config).
 2.  Importez le fichier `.sql` situé à la racine du projet dans cette base de données.
