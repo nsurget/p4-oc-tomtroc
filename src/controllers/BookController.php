@@ -5,7 +5,7 @@ class BookController
     public function showBooks(): void
     {
         $bookManager = new BookManager();
-        $books = $bookManager->getAllBooks();
+        $books = $bookManager->getAllBooksAvailable();
 
         $view = new View("Nos livres à l'échange");
         $view->render("books", ['books' => $books]);
@@ -85,10 +85,10 @@ class BookController
             $author_id = $authorManager->addAuthor($author_name);
         }
 
-        $bookUrl = Utils::request("book-url");
+        $bookUrl = Utils::request("url-picture");
         $bookUrl = htmlspecialchars($bookUrl);
-        if (empty($profilUrl)) {
-            $bookPicture = $_FILES['book-picture'];
+        if (empty($bookUrl)) {
+            $bookPicture = $_FILES['upload-picture'];
             $bookUrl = Utils::uploadFile($bookPicture);
         }
 
@@ -111,10 +111,23 @@ class BookController
         $book->setUserId($user_id);
         $book->setDescription($description);
         $book->setAvailability($availability);
-        $book->setPicture($bookUrl);
+        $book->setUrlImage($bookUrl);
 
         
         $id = $bookManager->saveBook($book);
         Utils::redirect(AppRoutes::SHOW_SINGLE_BOOK , ['id' => $id]);
+    }
+    
+    public function deleteBook(): void
+    {
+        Utils::checkUserConnected();
+        
+        $id = Utils::request('id');
+        $id = intval($id);
+        
+        $bookManager = new BookManager();
+        $bookManager->deleteBook($id);
+        
+        Utils::redirect(AppRoutes::USER_PROFIL);
     }
 }

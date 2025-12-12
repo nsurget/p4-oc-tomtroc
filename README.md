@@ -58,7 +58,26 @@ Pour tester les fonctionnalités "connectées" de l'application sans créer de n
 
 ---
 
+## Utilisation de NPM
+
+Ce projet utilise NPM pour gérer les dépendances frontend. Pour installer les dépendances :
+
+```bash
+npm install
+```
+
+Cela installera les paquets nécessaires pour le frontend.
+
+Ensuite il y a deux script :
+*   `npm run prod` : compile le scss en css minifié.
+*   `npm run watch` : compile le scss en css non minifié et surveille les changements (pour le développement).
+
+
+---
+
 ## ⚙️ Fonctionnalités et Routes
+
+Listing des routes dans le fichier PHP `services/AppRoutes.php`
 
 L'application gère les actions suivantes via le paramètre d'URL `?action=` :
 

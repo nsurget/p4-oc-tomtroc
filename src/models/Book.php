@@ -2,7 +2,7 @@
 
 /**
  * Entité représentant un livre.
- * Avec les champs id, pseudo, content, et idArticle.
+ * Avec les champs id, title, description, availability, url_image, author_id, user_id.
  */
 
 class Book extends AbstractEntity

@@ -5,7 +5,7 @@
  */
 class BookManager extends AbstractEntityManager
 {
-    public function getAllBooks(): array
+    public function getAllBooksAvailable(): array
     {
         $sql = "SELECT 
                     books.*, 
@@ -13,7 +13,8 @@ class BookManager extends AbstractEntityManager
                     users.pseudo AS user_pseudo 
                 FROM books 
                 INNER JOIN authors ON books.author_id = authors.id 
-                INNER JOIN users ON books.user_id = users.id;";
+                INNER JOIN users ON books.user_id = users.id 
+                WHERE books.availability = 'available';";
 
         $result = $this->db->query($sql);
 
@@ -134,14 +135,14 @@ class BookManager extends AbstractEntityManager
             'user_id' => $book->getUserId(),
             'description' => $book->getDescription(),
             'availability' => $book->getAvailability(),
-            
+            'url_image' => $book->getUrlImage()
         ];
 
         if ($book->getId() > 0) {
             $params['id'] = $book->getId();
-            $sql = "UPDATE books SET title = :title, author_id = :author_id, user_id = :user_id, description = :description, availability = :availability WHERE id = :id;";
+            $sql = "UPDATE books SET title = :title, author_id = :author_id, user_id = :user_id, description = :description, availability = :availability, url_image = :url_image WHERE id = :id;";
         } else {
-            $sql = "INSERT INTO books (title, author_id, user_id, description, availability) VALUES (:title, :author_id, :user_id, :description, :availability);";
+            $sql = "INSERT INTO books (title, author_id, user_id, description, availability, url_image) VALUES (:title, :author_id, :user_id, :description, :availability, :url_image);";
         }
         
                    
@@ -152,5 +153,11 @@ class BookManager extends AbstractEntityManager
 
         $book_id = $this->db->lastInsertId();
         return $book_id;
+    }
+    
+    public function deleteBook(int $id): void
+    {
+        $sql = "DELETE FROM books WHERE id = :id;";
+        $this->db->query($sql, ['id' => $id]);
     }
 }

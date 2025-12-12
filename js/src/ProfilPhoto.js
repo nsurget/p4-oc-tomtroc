@@ -17,6 +17,9 @@ export default class ProfilPhoto {
         let uploadPicture = document.querySelector('.upload-picture');
         let urlPicture = document.querySelector('.url-picture');
 
+        
+        
+
         profilPicture.addEventListener('change', () => {
             if (profilPicture.value === '') {
                 urlPicture.style.display = 'block';

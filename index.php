@@ -76,7 +76,7 @@ try {
             $userController = new UserController();
             $id = Utils::request('id');
             $id = intval($id);
-            
+
             if (empty($id) || !empty($_SESSION['idUser']) && $_SESSION['idUser'] == $id) {
                 $userController->showUserProfil();
             } else {
@@ -122,6 +122,11 @@ try {
         case AppRoutes::SEND_MESSAGE:
             $discussionController = new DiscussionController();
             $discussionController->sendMessage();
+            break;
+
+        case AppRoutes::DELETE_BOOK:
+            $bookController = new BookController();
+            $bookController->deleteBook();
             break;
 
         default:

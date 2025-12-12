@@ -32,12 +32,12 @@ class UserController
         $userManager = new UserManager();
         $user = $userManager->getUserByEmail($email);
         if (!$user) {
-            throw new Exception("L'utilisateur demandé n'existe pas.");
+            throw new Exception("L'Email ou le mot de passe est incorrect");
         }
 
         // On vérifie que le mot de passe est correct.
         if (!password_verify($password, $user->getPassword())) {
-            throw new Exception("Le mot de passe est incorrect");
+            throw new Exception("L'Email ou le mot de passe est incorrect");
         }
 
         // On connecte l'utilisateur.
@@ -67,7 +67,7 @@ class UserController
         $userManager = new UserManager();
         $user = $userManager->getUserByEmail($email);
         if ($user) {
-            throw new Exception("L'utilisateur demandé existe déjà.");
+            throw new Exception("Un utilisateur avec cette adresse email existe déjà.");
         }
 
         // On enregistre l'utilisateur.

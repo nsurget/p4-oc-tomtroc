@@ -17,7 +17,7 @@ $authors = $params['authors'] ?? [];
     <?php else: ?>
         <h2>Ajouter un livre</h2>
     <?php endif; ?>
-    <form action="?action=<?= AppRoutes::SAVE_BOOK ?>" method="post">
+    <form action="?action=<?= AppRoutes::SAVE_BOOK ?>" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?= $book?->getId() ?? -1 ?>">
         <div class="book-image">
             <?php if ($book): ?>
@@ -28,13 +28,17 @@ $authors = $params['authors'] ?? [];
                 <p class="edit-picture-button">Ajouter une image</p>
             <?php endif; ?>
             <div class="edit-picture-form hidden">
-                <label>Uploader une image</label>
-                <input type="file" name="book-picture">
-                <p>Format accepté : .png, .jpg, .jpeg, .gif</p>
-                <p>Taille max : 2Mo</p>
-                <p>ou via une url :</p>
-                <label>URL de l'image</label>
-                <input type="url" name="book-url">
+                <div class="upload-picture">
+                    <label>Uploader une image</label>
+                    <input type="file" name="upload-picture" id="profil-picture">
+                    <p>Format accepté : .png, .jpg, .jpeg, .gif</p>
+                    <p>Taille max : 2Mo</p>
+                    <p>ou via une url :</p>
+                </div>
+                <div class="url-picture">
+                    <label>URL de l'image</label>
+                    <input type="url" name="url-picture" id="profil-url" value="<?= htmlspecialchars($book?->getUrlImage() ?? '') ?>">
+                </div>
             </div>
         </div>
         <div class="book-info">
